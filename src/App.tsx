@@ -1,11 +1,10 @@
 import React, { FC } from "react"
-import "./index.scss"
 import { Header } from "./components/Header/Header"
 import { Reel } from "./components/Reel/Reel"
-import { Year } from "./components/Year/Year"
+import { Slider } from "./components/Slider/Slider"
 import { Switch } from "./components/Switch/Switch"
-import { Card } from "./components/Card/Card"
-import { ButtonArrow } from "./components/ButtonArrow/ButtonArrow"
+import { Year } from "./components/Year/Year"
+import "./index.scss"
 
 export const App: FC = () => {
   return (
@@ -17,25 +16,11 @@ export const App: FC = () => {
         <Year number={2022} color="#f900a5" />
       </div>
 
+      <Reel />
+
       <Switch />
 
-      <div className="slider">
-        <Card
-          year={2015}
-          desc="13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды"
-        />
-        <Card
-          year={2015}
-          desc="13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды"
-        />
-        <Card
-          year={2015}
-          desc="13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды"
-        />
-        <ButtonArrow />
-      </div>
-
-      <Reel />
+      <Slider />
 
       <div className="line line-hor"></div>
       <div className="line line-ver"></div>

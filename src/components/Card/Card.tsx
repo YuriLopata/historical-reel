@@ -2,10 +2,10 @@ import React, { FC } from "react"
 import { ICard } from "./interface"
 import "./card.scss"
 
-export const Card: FC<ICard> = ({ year, desc }) => {
+export const Card: FC<ICard> = ({ title, desc }) => {
   return (
     <div className="component-card">
-      <h4>{year}</h4>
+      <h4>{title}</h4>
 
       <p>
         {desc}
