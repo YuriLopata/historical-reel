@@ -1,4 +1,5 @@
 import React, { FC } from "react"
+import { items } from "./assets/db"
 import { Header } from "./components/Header/Header"
 import { Reel } from "./components/Reel/Reel"
 import { Slider } from "./components/Slider/Slider"
@@ -16,7 +17,7 @@ export const App: FC = () => {
         <Year number={2022} color="#f900a5" />
       </div>
 
-      <Reel />
+      <Reel timePeriodsNum={items.length} />
 
       <Switch />
 
