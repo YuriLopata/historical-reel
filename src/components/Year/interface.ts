@@ -1,4 +1,4 @@
 export interface IYear {
-    number: number
+    year: number
     color?: string
 }

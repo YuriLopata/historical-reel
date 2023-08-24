@@ -12,5 +12,12 @@
         .component-buttonArrow:first-child {
             margin-right: 20px;
         }
+
+        .component-buttonArrow {
+            &:hover,
+            &:focus {
+                border: 1px solid #6b6f7e;
+            }
+        }
     }
 }
