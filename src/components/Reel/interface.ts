@@ -1,7 +1,7 @@
 import { IContentElement } from "models"
 
 export interface IReel {
-    timePeriodsNum: number
+    timePeriodsCount: number
     onClickItem: (item: IContentElement) => void
     activeEl: IContentElement
 }

@@ -5,11 +5,22 @@ import { IReel } from "./interface"
 import "./reel.scss"
 import { IContentElement } from "models"
 
-export const Reel: FC<IReel> = ({ timePeriodsNum, onClickItem, activeEl }) => {
+export const Reel: FC<IReel> = ({
+  timePeriodsCount,
+  onClickItem,
+  activeEl,
+}) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
   const dotWrapperRefs = useRef<Array<HTMLButtonElement | null>>([])
-  const angleIncrement: number = 360 / timePeriodsNum
-  const defaultRotate = -60 // 60 градусов против часовой стрелки
+  const angleIncrement: number = 360 / timePeriodsCount
+
+  const defineDefaultAngle = (): number => {
+    if (timePeriodsCount === 5) return -36
+    if (timePeriodsCount === 4) return -45
+    if (timePeriodsCount === 3) return -30
+    return -60
+  }
+  const defaultAngle = defineDefaultAngle() // градусов против часовой стрелки
 
   useEffect(() => {
     const reel = reelRef.current
@@ -23,7 +34,7 @@ export const Reel: FC<IReel> = ({ timePeriodsNum, onClickItem, activeEl }) => {
         (dotWrapper: HTMLButtonElement | null, index) => {
           if (dotWrapper) {
             const adjustedAngle =
-              ((index * angleIncrement + defaultRotate) * Math.PI) / 180 // расчет угла между точками
+              ((index * angleIncrement + defaultAngle) * Math.PI) / 180 // расчет угла между точками
             const x = centerX + radius * Math.cos(adjustedAngle)
             const y = centerY + radius * Math.sin(adjustedAngle)
 
@@ -55,12 +66,12 @@ export const Reel: FC<IReel> = ({ timePeriodsNum, onClickItem, activeEl }) => {
             className="component-reel__dot"
             style={{ transform: `rotate(-${angleIncrement * index}deg)` }}
           >
-            <p>{index + 1}</p>
+            <p className="component-reel__number">{index + 1}</p>
+
+            {item.id === activeEl.id && <p className="component-reel__title">{activeEl.title}</p>}
           </div>
         </button>
       ))}
-
-      {/* <p className="component-reel__title">История</p> */}
     </div>
   )
 }

@@ -25,7 +25,7 @@ export const App: FC = () => {
       </div>
 
       <Reel
-        timePeriodsNum={contentElements.length}
+        timePeriodsCount={contentElements.length}
         onClickItem={handleClickContentEl}
         activeEl={activeEl}
       />
