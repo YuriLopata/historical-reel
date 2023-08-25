@@ -22,6 +22,7 @@ export const App: FC = () => {
 
       <Reel
         timePeriodsCount={contentElements.length}
+        diameter={530}
         activeEl={activeEl}
         setActiveEl={setActiveEl}
       />
