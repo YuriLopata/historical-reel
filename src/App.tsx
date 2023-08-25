@@ -11,10 +11,6 @@ import "./index.scss"
 export const App: FC = () => {
   const [activeEl, setActiveEl] = useState<IContentElement>(contentElements[0])
 
-  const handleClickContentEl = (contentEl: IContentElement) => {
-    setActiveEl(contentEl)
-  }
-
   return (
     <div className="wrapper">
       <Header title="Исторические даты" />
@@ -26,8 +22,8 @@ export const App: FC = () => {
 
       <Reel
         timePeriodsCount={contentElements.length}
-        onClickItem={handleClickContentEl}
         activeEl={activeEl}
+        setActiveEl={setActiveEl}
       />
       <div className="line line-hor"></div>
       <div className="line line-ver"></div>

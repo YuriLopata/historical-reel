@@ -1,11 +1,11 @@
-import { ICard, IContentElement } from "models"
+import { IContentElement } from "models"
+import { LegacyRef, MutableRefObject } from "react"
 
 export interface IContentPoint {
     contentElement: IContentElement
     activeEl: IContentElement
     index: number
-    onClickItem: any
-    angleIncrement: any
-    titleRef: any
-    pointWrapperRefs: any
+    onClickItem: (item: IContentElement) => void
+    angleIncrement: number
+    pointWrapperRefs: MutableRefObject<(HTMLButtonElement | null)[]>
 }

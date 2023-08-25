@@ -8,12 +8,11 @@ import { ContentPoint } from "../ContentPoint/ContentPoint"
 
 export const Reel: FC<IReel> = ({
   timePeriodsCount,
-  onClickItem,
   activeEl,
+  setActiveEl
 }) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
-  const titleRef = useRef<HTMLParagraphElement | null>(null)
-  const pointWrapperRefs = useRef<Array<HTMLButtonElement | null>>([])
+  const pointWrapperRefs = useRef<(HTMLButtonElement | null)[]>([])
   const angleIncrement: number = 360 / timePeriodsCount
 
   const defineDefaultAngle = (): number => {
@@ -28,7 +27,7 @@ export const Reel: FC<IReel> = ({
     const reel = reelRef.current
 
     if (reel) {
-      const radius = reel && reel.offsetWidth / 2
+      const radius = reel.offsetWidth / 2
 
       pointWrapperRefs.current.map((pointWrapper, index) => {
         if (pointWrapper) {
@@ -43,14 +42,9 @@ export const Reel: FC<IReel> = ({
     }
   }, [])
 
-  useEffect(() => {
-    const titleAnimation = gsap.to(titleRef.current, {
-      duration: 1,
-      opacity: 1,
-    })
-    titleAnimation.delay(0) // TODO/ рассчитать задержку после анимации вращения
-    titleAnimation.play()
-  }, [titleRef.current])
+  const handleClickContentEl = (contentEl: IContentElement) => {
+    setActiveEl(contentEl)
+  }
 
   return (
     <div className="component-reel" ref={reelRef}>
@@ -62,9 +56,8 @@ export const Reel: FC<IReel> = ({
           contentElement={item}
           activeEl={activeEl}
           index={index}
-          onClickItem={onClickItem}
+          onClickItem={handleClickContentEl}
           angleIncrement={angleIncrement}
-          titleRef={titleRef}
           pointWrapperRefs={pointWrapperRefs}
         />
       ))}

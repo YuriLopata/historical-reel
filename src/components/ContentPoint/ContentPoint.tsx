@@ -1,6 +1,7 @@
-import React, { FC } from "react"
+import React, { FC, useEffect, useRef } from "react"
 import { IContentPoint } from "./interface"
 import { IContentElement } from "models"
+import { gsap } from "gsap"
 
 export const ContentPoint: FC<IContentPoint> = ({
   contentElement,
@@ -8,13 +9,25 @@ export const ContentPoint: FC<IContentPoint> = ({
   index,
   onClickItem,
   angleIncrement,
-  titleRef,
-  pointWrapperRefs
+  pointWrapperRefs,
 }) => {
-    const getActiveClassname = (el: IContentElement): string => {
-      if (el.id === activeEl.id) return "component-reel__point-wrapper--active"
-      return ""
+  const titleRef = useRef<HTMLParagraphElement | null>(null)
+
+  useEffect(() => {
+    if (titleRef.current) {
+      const titleAnimation = gsap.to(titleRef.current, {
+        duration: 1,
+        opacity: 1,
+      })
+      titleAnimation.delay(0) // TODO/ рассчитать задержку после анимации вращения
+      titleAnimation.play()
     }
+  }, [activeEl])
+
+  const getActiveClassname = (el: IContentElement): string => {
+    if (el.id === activeEl.id) return "component-reel__point-wrapper--active"
+    return ""
+  }
 
   return (
     <button
