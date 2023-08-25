@@ -1,12 +1,12 @@
+import { IContentElement } from "models"
 import React, { FC, useState } from "react"
 import { contentElements } from "./assets/db"
+import { CardSlider } from "./components/CardSlider/CardSlider"
 import { Header } from "./components/Header/Header"
 import { Reel } from "./components/Reel/Reel"
-import { CardSlider } from "./components/CardSlider/CardSlider"
 import { Switch } from "./components/Switch/Switch"
 import { Year } from "./components/Year/Year"
 import "./index.scss"
-import { IContentElement } from "models"
 
 export const App: FC = () => {
   const [activeEl, setActiveEl] = useState<IContentElement>(contentElements[0])
@@ -29,6 +29,8 @@ export const App: FC = () => {
         onClickItem={handleClickContentEl}
         activeEl={activeEl}
       />
+      <div className="line line-hor"></div>
+      <div className="line line-ver"></div>
 
       <Switch
         contentElements={contentElements}
@@ -36,16 +38,7 @@ export const App: FC = () => {
         setActiveEl={setActiveEl}
       />
 
-      {/* {activeEl.cards.length > 3 ? (
-        <CardSlider activeEl={activeEl} />
-      ) : (
-        <Cards activeEl={activeEl} />
-      )} */}
-
       <CardSlider activeEl={activeEl} />
-
-      <div className="line line-hor"></div>
-      <div className="line line-ver"></div>
     </div>
   )
 }

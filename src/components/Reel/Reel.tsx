@@ -4,6 +4,7 @@ import { contentElements } from "../../assets/db"
 import { IReel } from "./interface"
 import "./reel.scss"
 import { IContentElement } from "models"
+import { ContentPoint } from "../ContentPoint/ContentPoint"
 
 export const Reel: FC<IReel> = ({
   timePeriodsCount,
@@ -51,40 +52,21 @@ export const Reel: FC<IReel> = ({
     titleAnimation.play()
   }, [titleRef.current])
 
-  const getActiveClassname = (el: IContentElement): string => {
-    if (el.id === activeEl.id) return "component-reel__point-wrapper--active"
-    return ""
-  }
-
   return (
     <div className="component-reel" ref={reelRef}>
       <div className="component-reel__reel"></div>
 
       {contentElements.map((item: IContentElement, index) => (
-        <button
+        <ContentPoint
           key={item.id}
-          ref={(el: HTMLButtonElement) =>
-            (pointWrapperRefs.current[index] = el)
-          }
-          onClick={() => onClickItem(item)}
-          className={`component-reel__point-wrapper ${getActiveClassname(
-            item
-          )}`}
-          style={{ transform: `rotate(${angleIncrement * index}deg)` }}
-        >
-          <div
-            className="component-reel__point"
-            style={{ transform: `rotate(-${angleIncrement * index}deg)` }}
-          >
-            <p className="component-reel__number">{index + 1}</p>
-
-            {item.id === activeEl.id && (
-              <p ref={titleRef} className="component-reel__title">
-                {activeEl.title}
-              </p>
-            )}
-          </div>
-        </button>
+          contentElement={item}
+          activeEl={activeEl}
+          index={index}
+          onClickItem={onClickItem}
+          angleIncrement={angleIncrement}
+          titleRef={titleRef}
+          pointWrapperRefs={pointWrapperRefs}
+        />
       ))}
     </div>
   )
