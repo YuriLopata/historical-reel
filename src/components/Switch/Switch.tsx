@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC, useRef } from "react"
 import { ButtonArrow } from "../ButtonArrow/ButtonArrow"
 import { ISwitch } from "./interface"
 import "./switch.scss"

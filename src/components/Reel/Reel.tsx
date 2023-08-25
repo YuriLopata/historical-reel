@@ -11,7 +11,8 @@ export const Reel: FC<IReel> = ({
   activeEl,
 }) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
-  const dotWrapperRefs = useRef<Array<HTMLButtonElement | null>>([])
+  const titleRef = useRef<HTMLParagraphElement | null>(null)
+  const pointWrapperRefs = useRef<Array<HTMLButtonElement | null>>([])
   const angleIncrement: number = 360 / timePeriodsCount
 
   const defineDefaultAngle = (): number => {
@@ -26,27 +27,32 @@ export const Reel: FC<IReel> = ({
     const reel = reelRef.current
 
     if (reel) {
-      const centerX = reel && reel.offsetWidth / 2
-      const centerY = reel && reel.offsetHeight / 2
       const radius = reel && reel.offsetWidth / 2
 
-      dotWrapperRefs.current.map(
-        (dotWrapper: HTMLButtonElement | null, index) => {
-          if (dotWrapper) {
-            const adjustedAngle =
-              ((index * angleIncrement + defaultAngle) * Math.PI) / 180 // расчет угла между точками
-            const x = centerX + radius * Math.cos(adjustedAngle)
-            const y = centerY + radius * Math.sin(adjustedAngle)
+      pointWrapperRefs.current.map((pointWrapper, index) => {
+        if (pointWrapper) {
+          const adjustedAngle =
+            ((index * angleIncrement + defaultAngle) * Math.PI) / 180 // расчет угла между точками
+          const x = radius * Math.cos(adjustedAngle)
+          const y = radius * Math.sin(adjustedAngle)
 
-            gsap.set(dotWrapper, { x, y })
-          }
+          gsap.set(pointWrapper, { x, y })
         }
-      )
+      })
     }
   }, [])
 
+  useEffect(() => {
+    const titleAnimation = gsap.to(titleRef.current, {
+      duration: 1,
+      opacity: 1,
+    })
+    titleAnimation.delay(0) // TODO/ рассчитать задержку после анимации вращения
+    titleAnimation.play()
+  }, [titleRef.current])
+
   const getActiveClassname = (el: IContentElement): string => {
-    if (el.id === activeEl.id) return "component-reel__dot-wrapper--active"
+    if (el.id === activeEl.id) return "component-reel__point-wrapper--active"
     return ""
   }
 
@@ -57,18 +63,26 @@ export const Reel: FC<IReel> = ({
       {contentElements.map((item: IContentElement, index) => (
         <button
           key={item.id}
-          ref={(el: HTMLButtonElement) => (dotWrapperRefs.current[index] = el)}
+          ref={(el: HTMLButtonElement) =>
+            (pointWrapperRefs.current[index] = el)
+          }
           onClick={() => onClickItem(item)}
-          className={`component-reel__dot-wrapper ${getActiveClassname(item)}`}
+          className={`component-reel__point-wrapper ${getActiveClassname(
+            item
+          )}`}
           style={{ transform: `rotate(${angleIncrement * index}deg)` }}
         >
           <div
-            className="component-reel__dot"
+            className="component-reel__point"
             style={{ transform: `rotate(-${angleIncrement * index}deg)` }}
           >
             <p className="component-reel__number">{index + 1}</p>
 
-            {item.id === activeEl.id && <p className="component-reel__title">{activeEl.title}</p>}
+            {item.id === activeEl.id && (
+              <p ref={titleRef} className="component-reel__title">
+                {activeEl.title}
+              </p>
+            )}
           </div>
         </button>
       ))}

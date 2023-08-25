@@ -1,22 +1,28 @@
 import { ICard } from "models"
-import React, { FC, useRef, useState } from "react"
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react"
+import React, { FC, useEffect, useRef, useState } from "react"
+import { Swiper, SwiperClass, SwiperRef, SwiperSlide } from "swiper/react"
 import "swiper/scss"
 import { ButtonArrow } from "../ButtonArrow/ButtonArrow"
 import { Card } from "../Card/Card"
 import { ICardSlider } from "./interface"
 import "./cardSlider.scss"
+import { gsap } from "gsap"
 
 export const CardSlider: FC<ICardSlider> = ({ activeEl }) => {
   const [activeSlide, setActiveSlide] = useState<number>(0)
-  const swiperRef = useRef<SwiperClass>()
+  const cardSliderRef = useRef<any>(null)
+  const swiperRef = useRef<SwiperClass | null>(null)
 
-  const getCardsCount = (): any => {
+  useEffect(() => {
+    gsap.to(cardSliderRef.current, { duration: 1, opacity: 1 })
+  }, [])
+
+  const getCardsCount = (): number => {
     const cardCount = activeEl.cards.length
 
     if (cardCount === 1) return 1
     if (cardCount === 2) return 2
-    if (cardCount >= 3) return 3
+    return 3
   }
   const visibleSlidesCount = getCardsCount()
 
@@ -28,7 +34,7 @@ export const CardSlider: FC<ICardSlider> = ({ activeEl }) => {
   }
 
   return (
-    <div className="component-cardSlider">
+    <div ref={cardSliderRef} className="component-cardSlider">
       {activeSlide !== 0 && activeEl.cards.length > 3 && (
         <ButtonArrow
           onClick={() => {

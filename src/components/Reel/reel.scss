@@ -11,10 +11,10 @@
     border-radius: 100%;
   }
 
-  .component-reel__dot-wrapper {
+  .component-reel__point-wrapper {
     position: absolute;
-    top: -27.5px;
-    left: -27.5px;
+    top: calc(50% - 27.5px);
+    left: calc(50% - 27.5px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,12 +22,12 @@
     height: 56px;
     background: transparent;
     border-radius: 100%;
-    cursor: pointer;
     z-index: 10;
+    // transform: translateX(50px);
 
     &:hover,
     &:focus {
-      .component-reel__dot {
+      .component-reel__point {
         width: 56px;
         height: 56px;
         background: #f4f4f9;
@@ -37,13 +37,13 @@
 
     &:hover,
     &:focus {
-      p {
+      .component-reel__number {
         opacity: 1 !important;
         font-size: 20px !important;
       }
     }
 
-    .component-reel__dot {
+    .component-reel__point {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -55,6 +55,11 @@
       cursor: pointer;
       transition: all 0.6s ease;
 
+      p {
+        font-size: 20px;
+        user-select: none;
+      }
+
       .component-reel__number {
         opacity: 0;
         transition: all 0.6s ease;
@@ -62,21 +67,21 @@
     }
   }
 
-  .component-reel__dot-wrapper--active {
+  .component-reel__point-wrapper--active {
     width: 56px;
     height: 56px;
     background: #f4f4f9;
+    z-index: 20;
 
-    .component-reel__dot {
+    .component-reel__point {
       position: relative;
       width: 56px;
       height: 56px;
       background: #f4f4f9;
       border: 1px solid #9397a8;
 
-      p {
-        opacity: 1 !important;
-        font-size: 20px;
+      .component-reel__number {
+        opacity: 1;
       }
 
       .component-reel__title {
@@ -84,6 +89,8 @@
         top: calc(50% - 13px);
         left: 76px;
         font-weight: 700;
+        opacity: 0;
+        cursor: default;
       }
     }
   }
