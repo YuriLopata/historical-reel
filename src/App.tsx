@@ -9,21 +9,16 @@ import { Year } from "./components/Year/Year"
 import "./index.scss"
 import { gsap } from "gsap"
 import { Parent } from "./components/Parent/Parent"
-import { Child } from "./components/Child/Child"
 
 export const App: FC = () => {
   const [activeEl, setActiveEl] = useState<IContentElement>(contentElements[0])
+  const [rotation, setRotation] = useState<number>(0)
+  const timePeriodsCount=  contentElements.length
+  const angleIncrement: number = 360 / timePeriodsCount
 
-  const rotateReel = (ref: any, angle: number) => {
-    console.log('ref: ', ref);
-    console.log('angle: ', angle);
-    
-    gsap.to(ref, {
-      duration: 1,
-      ease: 'none',
-      rotation: angle,
-      transformOrigin: `center`
-    })
+  const handleClickContentEl = (contentEl: IContentElement) => {
+    setActiveEl(contentEl)
+    setRotation(rotation + angleIncrement)
   }
 
   return (
@@ -36,11 +31,12 @@ export const App: FC = () => {
       </div>
 
       <Reel
-        timePeriodsCount={contentElements.length}
+        timePeriodsCount={timePeriodsCount}
         diameter={530}
         activeEl={activeEl}
-        setActiveEl={setActiveEl}
-        rotateReel={rotateReel}
+        angleIncrement={angleIncrement}
+        rotation={rotation}
+        handleClickContentEl={handleClickContentEl}
       />
       <div className="line line-hor"></div>
       <div className="line line-ver"></div>

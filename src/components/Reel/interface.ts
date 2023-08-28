@@ -3,7 +3,8 @@ import { IContentElement } from "models"
 export interface IReel {
     timePeriodsCount: number
     diameter: number
-    setActiveEl: any
     activeEl: IContentElement
-    rotateReel: any
+    angleIncrement: number
+    rotation: number
+    handleClickContentEl: any
 }

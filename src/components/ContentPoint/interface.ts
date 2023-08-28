@@ -7,5 +7,6 @@ export interface IContentPoint {
   onClickItem: (item: IContentElement) => void
   angleIncrement: number
   angle: number
+  defaultAngle: number
   rotation: number
 }

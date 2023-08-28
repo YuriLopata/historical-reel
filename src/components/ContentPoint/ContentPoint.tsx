@@ -11,6 +11,7 @@ export const ContentPoint: FC<IContentPoint> = ({
   onClickItem,
   angleIncrement,
   angle,
+  defaultAngle,
   rotation
 }) => {
   const pointRef = useRef<HTMLButtonElement | null>(null)
@@ -39,12 +40,12 @@ export const ContentPoint: FC<IContentPoint> = ({
       onClick={() => onClickItem(contentEl)}
       className={`component-point-wrapper ${getActiveClassname(contentEl)}`}
       style={{
-        transform: `rotate(${angle - angleIncrement}deg)`,
+        transform: `rotate(${angle + defaultAngle}deg)`,
       }}
     >
       <div
         className="component-point"
-        style={{ transform: `rotate(${angleIncrement}deg)` }}
+        style={{ transform: `rotate(${angleIncrement * (index + 1)}deg)` }}
       >
         <p
           className="component-point__number"

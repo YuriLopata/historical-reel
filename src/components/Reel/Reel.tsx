@@ -10,12 +10,11 @@ export const Reel: FC<IReel> = ({
   timePeriodsCount,
   diameter,
   activeEl,
-  setActiveEl,
-  rotateReel,
+  angleIncrement,
+  rotation,
+  handleClickContentEl
 }) => {
-  const [rotation, setRotation] = useState<number>(0)
   const reelRef = useRef<HTMLDivElement | null>(null)
-  const angleIncrement: number = 360 / timePeriodsCount
 
   const defineDefaultAngle = (): number => {
     if (timePeriodsCount === 5) return -36
@@ -24,11 +23,6 @@ export const Reel: FC<IReel> = ({
     return -60
   }
   const defaultAngle = defineDefaultAngle() // градусов против часовой стрелки
-
-  const handleClickContentEl = (contentEl: IContentElement) => {
-    setActiveEl(contentEl)
-    setRotation(rotation + angleIncrement)
-  }
 
   return (
     <div
@@ -53,6 +47,7 @@ export const Reel: FC<IReel> = ({
               onClickItem={handleClickContentEl}
               angleIncrement={angleIncrement}
               angle={index * angleIncrement + rotation}
+              defaultAngle={defaultAngle}
               rotation={rotation}
             />
           )
