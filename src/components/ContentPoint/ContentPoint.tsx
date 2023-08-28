@@ -15,7 +15,7 @@ export const ContentPoint: FC<IContentPoint> = ({
   const pointRef = useRef<HTMLButtonElement | null>(null)
   const titleRef = useRef<HTMLParagraphElement | null>(null)
 
-  const {angleIncrement, rotation, activeEl} = useContext(AppContext)
+  const { angleIncrement, rotation, activePoint } = useContext(AppContext)
 
   useEffect(() => {
     if (titleRef.current) {
@@ -26,10 +26,10 @@ export const ContentPoint: FC<IContentPoint> = ({
       titleAnimation.delay(0) // TODO/ рассчитать задержку после анимации вращения
       titleAnimation.play()
     }
-  }, [activeEl])
+  }, [activePoint])
 
   const getActiveClassname = (el: IContentElement): string => {
-    if (el.id === activeEl.id) return "component-point-wrapper--active"
+    if (el.id === activePoint.id) return "component-point-wrapper--active"
     return ""
   }
 
@@ -45,20 +45,13 @@ export const ContentPoint: FC<IContentPoint> = ({
     >
       <div
         className="component-point"
-        style={{ transform: `rotate(${angleIncrement * (index + 1)}deg)` }}
+        style={{ transform: `rotate(${/*360 - rotation * (index + 1) + */angleIncrement}deg)` }}
       >
-        <p
-          className="component-point__number"
-        >
-          {index + 1}
-        </p>
+        <p className="component-point__number">{index + 1}</p>
 
-        {contentEl.id === activeEl.id && (
-          <p
-            ref={titleRef}
-            className="component-point__title"
-          >
-            {activeEl.title}
+        {contentEl.id === activePoint.id && (
+          <p ref={titleRef} className="component-point__title">
+            {activePoint.title}
           </p>
         )}
       </div>

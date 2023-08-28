@@ -3,13 +3,17 @@ import { IContentElement } from "../models"
 import { contentElements } from "../assets/db"
 
 export interface IAppContext {
-    activeEl: IContentElement
+    activePoint: IContentElement
     rotation: number
     angleIncrement: number
+    activeIndex: number
+    handleShiftPoint: any
 }
 
 export const AppContext = createContext<IAppContext>({
-    activeEl: contentElements[0],
+    activePoint: contentElements[0],
     rotation: 0,
-    angleIncrement: 360 / contentElements.length
+    angleIncrement: 0,
+    activeIndex: 0,
+    handleShiftPoint: () => {}
 })

@@ -1,24 +1,26 @@
 import { ICard } from "models"
-import React, { FC, useEffect, useRef, useState } from "react"
-import { Swiper, SwiperClass, SwiperRef, SwiperSlide } from "swiper/react"
+import React, { FC, useContext, useEffect, useRef, useState } from "react"
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react"
 import "swiper/scss"
 import { ButtonArrow } from "../ButtonArrow/ButtonArrow"
 import { Card } from "../Card/Card"
 import { ICardSlider } from "./interface"
 import "./cardSlider.scss"
 import { gsap } from "gsap"
+import { AppContext } from "../../context/AppContext"
 
-export const CardSlider: FC<ICardSlider> = ({ activeEl }) => {
+export const CardSlider: FC<ICardSlider> = () => {
   const [activeSlide, setActiveSlide] = useState<number>(0)
   const cardSliderRef = useRef<any>(null)
   const swiperRef = useRef<SwiperClass | null>(null)
+  const { activePoint } = useContext(AppContext)
 
   useEffect(() => {
     gsap.to(cardSliderRef.current, { duration: 1, opacity: 1 })
   }, [])
 
   const getCardsCount = (): number => {
-    const cardCount = activeEl.cards.length
+    const cardCount = activePoint.cards.length
 
     if (cardCount === 1) return 1
     if (cardCount === 2) return 2
@@ -35,7 +37,7 @@ export const CardSlider: FC<ICardSlider> = ({ activeEl }) => {
 
   return (
     <div ref={cardSliderRef} className="component-cardSlider">
-      {activeSlide !== 0 && activeEl.cards.length > 3 && (
+      {activeSlide !== 0 && activePoint.cards.length > 3 && (
         <ButtonArrow
           onClick={() => {
             swiperRef?.current?.slidePrev()
@@ -54,14 +56,14 @@ export const CardSlider: FC<ICardSlider> = ({ activeEl }) => {
         onSlideChange={handleSlideChange}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
       >
-        {activeEl.cards.map((card: ICard) => (
+        {activePoint.cards.map((card: ICard) => (
           <SwiperSlide key={card.cardId}>
             <Card title={card.title} desc={card.description} />
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {isSlideLast && activeEl.cards.length > 3 && (
+      {isSlideLast && activePoint.cards.length > 3 && (
         <ButtonArrow
           onClick={() => {
             swiperRef?.current?.slideNext()

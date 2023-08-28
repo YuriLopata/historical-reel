@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useRef, useState } from "react"
+import React, { FC, useContext, useRef } from "react"
 import { contentElements } from "../../assets/db"
 import { IReel } from "./interface"
 import "./reel.scss"
@@ -9,11 +9,11 @@ import { AppContext } from "../../context/AppContext"
 export const Reel: FC<IReel> = ({
   timePeriodsCount,
   diameter,
-  handleClickContentEl
+  handleChangePoint
 }) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
 
-  const {activeEl, rotation, angleIncrement} = useContext(AppContext)
+  const {activePoint, rotation, angleIncrement} = useContext(AppContext)
 
   const defineDefaultAngle = (): number => {
     if (timePeriodsCount === 5) return -36
@@ -42,7 +42,7 @@ export const Reel: FC<IReel> = ({
               key={item.id}
               contentEl={item}
               index={index}
-              onClickItem={handleClickContentEl}
+              onClickItem={handleChangePoint}
               angle={index * angleIncrement + rotation}
               defaultAngle={defaultAngle}
             />

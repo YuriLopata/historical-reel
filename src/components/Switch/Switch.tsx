@@ -1,37 +1,40 @@
-import React, { FC, useRef } from "react"
+import React, { FC, useContext, useRef } from "react"
 import { ButtonArrow } from "../ButtonArrow/ButtonArrow"
 import { ISwitch } from "./interface"
 import "./switch.scss"
 import { IContentElement } from "models"
+import { AppContext } from "../../context/AppContext"
 
 export const Switch: FC<ISwitch> = ({
   contentElements,
-  activeEl,
-  setActiveEl,
+  // activeEPoint,
+  // setActivePoint,
 }) => {
-  const activeIndex = contentElements.findIndex(
-    (el: IContentElement) => el.id === activeEl.id
-  )
+  // const activeIndex = contentElements.findIndex(
+  //   (el: IContentElement) => el.id === activeEl.id
+  // )
 
-  const handleMoveEl = (direction: "next" | "prev"): void => {
-    if (direction === "prev") {
-      if (activeIndex === 0) {
-        setActiveEl(contentElements[contentElements.length - 1])
-        return
-      }
+  const {activeIndex, handleShiftPoint} = useContext(AppContext)
 
-      setActiveEl(contentElements[activeIndex - 1])
-    }
+  // const handleMoveEl = (direction: "next" | "prev"): void => {
+  //   if (direction === "prev") {
+  //     if (activeIndex === 0) {
+  //       setActiveEl(contentElements[contentElements.length - 1])
+  //       return
+  //     }
 
-    if (direction === "next") {
-      if (activeIndex + 1 === contentElements.length) {
-        setActiveEl(contentElements[0])
-        return
-      }
+  //     setActiveEl(contentElements[activeIndex - 1])
+  //   }
 
-      setActiveEl(contentElements[activeIndex + 1])
-    }
-  }
+  //   if (direction === "next") {
+  //     if (activeIndex + 1 === contentElements.length) {
+  //       setActiveEl(contentElements[0])
+  //       return
+  //     }
+
+  //     setActiveEl(contentElements[activeIndex + 1])
+  //   }
+  // }
 
   return (
     <div className="component-switch">
@@ -41,14 +44,14 @@ export const Switch: FC<ISwitch> = ({
 
       <div className="component-switch__buttons">
         <ButtonArrow
-          onClick={() => handleMoveEl("prev")}
+          onClick={() => handleShiftPoint("prev")}
           diameter={50}
           direction="left"
           bgColor="#f4f3f9"
         />
 
         <ButtonArrow
-          onClick={() => handleMoveEl("next")}
+          onClick={() => handleShiftPoint("next")}
           diameter={50}
           bgColor="#f4f3f9"
         />

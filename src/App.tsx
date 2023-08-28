@@ -10,42 +10,81 @@ import "./index.scss"
 import { AppContext } from "./context/AppContext"
 
 export const App: FC = () => {
-  const [activeEl, setActiveEl] = useState<IContentElement>(contentElements[0])
+  const [activePoint, setActivePoint] = useState<IContentElement>(
+    contentElements[0]
+  )
   const [rotation, setRotation] = useState<number>(0)
-  const timePeriodCount=  contentElements.length
+  const timePeriodCount = contentElements.length
+  const angleIncrement = 360 / timePeriodCount
 
-  const {angleIncrement} = useContext(AppContext)
+  const activeIndex = contentElements.findIndex(
+    (el: IContentElement) => el.id === activePoint.id
+  )
 
-  const handleClickContentEl = (contentEl: IContentElement) => {
-    setActiveEl(contentEl)
+  // const nextPoint = () => {
+  //   setActivePoint(contentElements[activeIndex + 1])
+  // }
+
+  const handleChangePoint = (contentEl: IContentElement) => {
+    setActivePoint(contentEl)
     setRotation(rotation + angleIncrement)
   }
 
+  const handleShiftPoint = (direction: "next" | "prev"): void => {
+    if (direction === "prev") {
+      setRotation(rotation + angleIncrement)
+      if (activeIndex === 0) {
+        setActivePoint(contentElements[contentElements.length - 1])
+        return
+      }
+
+      setActivePoint(contentElements[activeIndex - 1])
+    }
+
+    if (direction === "next") {
+      setRotation(rotation - angleIncrement)
+      if (activeIndex + 1 === contentElements.length) {
+        setActivePoint(contentElements[0])
+        return
+      }
+
+      setActivePoint(contentElements[activeIndex + 1])
+    }
+  }
+
   return (
-    <AppContext.Provider value={{activeEl, rotation, angleIncrement}}>
+    <AppContext.Provider
+      value={{
+        activePoint,
+        activeIndex,
+        rotation,
+        angleIncrement,
+        handleShiftPoint,
+      }}
+    >
       <div className="wrapper">
         <Header title="Исторические даты" />
-  
+
         <div className="years">
-          <Year year={activeEl.yearStart} color="#7500f0" />
-          <Year year={activeEl.yearEnd} color="#f900a5" />
+          <Year year={activePoint.yearStart} color="#7500f0" />
+          <Year year={activePoint.yearEnd} color="#f900a5" />
         </div>
-  
+
         <Reel
           timePeriodsCount={timePeriodCount}
           diameter={530}
-          handleClickContentEl={handleClickContentEl}
+          handleChangePoint={handleChangePoint}
         />
         <div className="line line-hor"></div>
         <div className="line line-ver"></div>
-  
+
         <Switch
           contentElements={contentElements}
-          activeEl={activeEl}
-          setActiveEl={setActiveEl}
+          // activePoint={activePoint}
+          // setActivePoint={setActivePoint}
         />
-  
-        <CardSlider activeEl={activeEl} />
+
+        <CardSlider />
       </div>
     </AppContext.Provider>
   )
