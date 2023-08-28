@@ -9,7 +9,9 @@ export const ContentPoint: FC<IContentPoint> = ({
   activeEl,
   index,
   onClickItem,
-  layout
+  angleIncrement,
+  angle,
+  rotation
 }) => {
   const pointRef = useRef<HTMLButtonElement | null>(null)
   const titleRef = useRef<HTMLParagraphElement | null>(null)
@@ -26,7 +28,7 @@ export const ContentPoint: FC<IContentPoint> = ({
   }, [activeEl])
 
   const getActiveClassname = (el: IContentElement): string => {
-    if (el.id === activeEl.id) return "component-contentPoint-wrapper--active"
+    if (el.id === activeEl.id) return "component-point-wrapper--active"
     return ""
   }
 
@@ -35,18 +37,26 @@ export const ContentPoint: FC<IContentPoint> = ({
       key={contentEl.id}
       ref={pointRef}
       onClick={() => onClickItem(contentEl)}
-      className={`component-contentPoint-wrapper ${getActiveClassname(
-        contentEl
-      )}`}
-      style={layout}
+      className={`component-point-wrapper ${getActiveClassname(contentEl)}`}
+      style={{
+        transform: `rotate(${angle - angleIncrement}deg)`,
+      }}
     >
       <div
-        className="component-contentPoint"
+        className="component-point"
+        style={{ transform: `rotate(${angleIncrement}deg)` }}
       >
-        <p className="component-contentPoint__number">{index + 1}</p>
+        <p
+          className="component-point__number"
+        >
+          {index + 1}
+        </p>
 
         {contentEl.id === activeEl.id && (
-          <p ref={titleRef} className="component-contentPoint__title">
+          <p
+            ref={titleRef}
+            className="component-point__title"
+          >
             {activeEl.title}
           </p>
         )}

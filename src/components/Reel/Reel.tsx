@@ -1,16 +1,19 @@
-import React, { FC, useRef } from "react"
+import React, { FC, useEffect, useRef, useState } from "react"
 import { contentElements } from "../../assets/db"
 import { IReel } from "./interface"
 import "./reel.scss"
 import { IContentElement } from "models"
 import { ContentPoint } from "../ContentPoint/ContentPoint"
+import { gsap } from "gsap"
 
 export const Reel: FC<IReel> = ({
   timePeriodsCount,
   diameter,
   activeEl,
   setActiveEl,
+  rotateReel,
 }) => {
+  const [rotation, setRotation] = useState<number>(0)
   const reelRef = useRef<HTMLDivElement | null>(null)
   const angleIncrement: number = 360 / timePeriodsCount
 
@@ -24,6 +27,7 @@ export const Reel: FC<IReel> = ({
 
   const handleClickContentEl = (contentEl: IContentElement) => {
     setActiveEl(contentEl)
+    setRotation(rotation + angleIncrement)
   }
 
   return (
@@ -37,31 +41,23 @@ export const Reel: FC<IReel> = ({
         top: `calc(480px - ${diameter}px / 2)`,
       }}
     >
-      <div className="component-reel__reel"></div>
+      <div className="component-reel__reel">
+        {contentElements.map((item: IContentElement, index) => {
 
-      {contentElements.map((item: IContentElement, index) => {
-        const radius = diameter / 2
-        const adjustedAngle =
-          ((index * angleIncrement + defaultAngle) * Math.PI) / 180 // расчет угла между точками
-        const x = radius * Math.cos(adjustedAngle)
-        const y = radius * Math.sin(adjustedAngle)
-
-        const pointCoordinates = {
-          top: `calc(50% + ${y}px - 27.5px)`,
-          left: `calc(50% + ${x}px - 27.5px)`,
-        }
-
-        return (
-          <ContentPoint
-            key={item.id}
-            contentEl={item}
-            activeEl={activeEl}
-            index={index}
-            onClickItem={handleClickContentEl}
-            layout={pointCoordinates}
-          />
-        )
-      })}
+          return (
+            <ContentPoint
+              key={item.id}
+              contentEl={item}
+              activeEl={activeEl}
+              index={index}
+              onClickItem={handleClickContentEl}
+              angleIncrement={angleIncrement}
+              angle={index * angleIncrement + rotation}
+              rotation={rotation}
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }

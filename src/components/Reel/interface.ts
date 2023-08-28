@@ -5,4 +5,5 @@ export interface IReel {
     diameter: number
     setActiveEl: any
     activeEl: IContentElement
+    rotateReel: any
 }

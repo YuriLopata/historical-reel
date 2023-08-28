@@ -1,7 +1,8 @@
-.component-contentPoint-wrapper {
+.component-point-wrapper {
     position: absolute;
+    right: calc(-27.5px - 1px);
     top: calc(50% - 27.5px);
-    left: calc(50% - 27.5px);
+    transform-origin: -237px 27.5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,11 +10,11 @@
     height: 56px;
     background: transparent;
     border-radius: 100%;
-    z-index: 10;
+    z-index: 20;
 
     &:hover,
     &:focus {
-        .component-contentPoint {
+        .component-point {
             width: 56px;
             height: 56px;
             background: #f4f4f9;
@@ -23,13 +24,13 @@
 
     &:hover,
     &:focus {
-        .component-contentPoint__number {
+        .component-point__number {
             opacity: 1 !important;
             font-size: 20px !important;
         }
     }
 
-    .component-contentPoint {
+    .component-point {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -46,31 +47,31 @@
             user-select: none;
         }
 
-        .component-contentPoint__number {
+        .component-point__number {
             opacity: 0;
             transition: all 0.6s ease;
         }
     }
 }
 
-.component-contentPoint-wrapper--active {
+.component-point-wrapper--active {
     width: 56px;
     height: 56px;
     background: #f4f4f9;
     z-index: 20;
 
-    .component-contentPoint {
+    .component-point {
         position: relative;
         width: 56px;
         height: 56px;
         background: #f4f4f9;
         border: 1px solid #9397a8;
 
-        .component-contentPoint__number {
+        .component-point__number {
             opacity: 1;
         }
 
-        .component-contentPoint__title {
+        .component-point__title {
             position: absolute;
             top: calc(50% - 13px);
             left: 76px;

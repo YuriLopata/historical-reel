@@ -7,9 +7,24 @@ import { Reel } from "./components/Reel/Reel"
 import { Switch } from "./components/Switch/Switch"
 import { Year } from "./components/Year/Year"
 import "./index.scss"
+import { gsap } from "gsap"
+import { Parent } from "./components/Parent/Parent"
+import { Child } from "./components/Child/Child"
 
 export const App: FC = () => {
   const [activeEl, setActiveEl] = useState<IContentElement>(contentElements[0])
+
+  const rotateReel = (ref: any, angle: number) => {
+    console.log('ref: ', ref);
+    console.log('angle: ', angle);
+    
+    gsap.to(ref, {
+      duration: 1,
+      ease: 'none',
+      rotation: angle,
+      transformOrigin: `center`
+    })
+  }
 
   return (
     <div className="wrapper">
@@ -25,6 +40,7 @@ export const App: FC = () => {
         diameter={530}
         activeEl={activeEl}
         setActiveEl={setActiveEl}
+        rotateReel={rotateReel}
       />
       <div className="line line-hor"></div>
       <div className="line line-ver"></div>
@@ -36,6 +52,8 @@ export const App: FC = () => {
       />
 
       <CardSlider activeEl={activeEl} />
+
+      <Parent />
     </div>
   )
 }
