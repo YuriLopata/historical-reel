@@ -9,9 +9,9 @@ export const ContentPoint: FC<IContentPoint> = ({
   activeEl,
   index,
   onClickItem,
-  angleIncrement,
-  pointWrapperRefs,
+  layout
 }) => {
+  const pointRef = useRef<HTMLButtonElement | null>(null)
   const titleRef = useRef<HTMLParagraphElement | null>(null)
 
   useEffect(() => {
@@ -33,16 +33,15 @@ export const ContentPoint: FC<IContentPoint> = ({
   return (
     <button
       key={contentEl.id}
-      ref={(el: HTMLButtonElement) => (pointWrapperRefs.current[index] = el)}
+      ref={pointRef}
       onClick={() => onClickItem(contentEl)}
       className={`component-contentPoint-wrapper ${getActiveClassname(
         contentEl
       )}`}
-      style={{ transform: `rotate(${angleIncrement * index}deg)` }}
+      style={layout}
     >
       <div
         className="component-contentPoint"
-        style={{ transform: `rotate(-${angleIncrement * index}deg)` }}
       >
         <p className="component-contentPoint__number">{index + 1}</p>
 
