@@ -20,7 +20,7 @@ export const ContentPoint: FC<IContentPoint> = ({
   useEffect(() => {
     if (titleRef.current) {
       const titleAnimation = gsap.to(titleRef.current, {
-        duration: 1,
+        duration: 2,
         opacity: 1,
       })
       titleAnimation.delay(0) // TODO/ рассчитать задержку после анимации вращения
@@ -45,7 +45,11 @@ export const ContentPoint: FC<IContentPoint> = ({
     >
       <div
         className="component-point"
-        style={{ transform: `rotate(${/*360 - rotation * (index + 1) + */angleIncrement}deg)` }}
+        style={{
+          transform: `rotate(${
+            /*360 - rotation * (index + 1) + */ angleIncrement
+          }deg)`,
+        }} // TODO/рассчитать формулу поворота эл-та
       >
         <p className="component-point__number">{index + 1}</p>
 

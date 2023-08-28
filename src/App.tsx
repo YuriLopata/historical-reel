@@ -14,20 +14,35 @@ export const App: FC = () => {
     contentElements[0]
   )
   const [rotation, setRotation] = useState<number>(0)
-  const timePeriodCount = contentElements.length
-  const angleIncrement = 360 / timePeriodCount
+  const pointCount = contentElements.length
+  const angleIncrement = 360 / pointCount
 
   const activeIndex = contentElements.findIndex(
     (el: IContentElement) => el.id === activePoint.id
   )
 
-  // const nextPoint = () => {
-  //   setActivePoint(contentElements[activeIndex + 1])
-  // }
+  const defineRotateAngle = (clickedPoint: IContentElement): number => {
+    const currentIndex = contentElements.findIndex(
+      (el: IContentElement) => el.id === clickedPoint.id
+    )
+    const difference = currentIndex - activeIndex
 
-  const handleChangePoint = (contentEl: IContentElement) => {
-    setActivePoint(contentEl)
-    setRotation(rotation + angleIncrement)
+    if (difference === 1 || difference === -(pointCount - 1))
+      return -angleIncrement
+    if (difference === 2 || difference === -(pointCount - 2))
+      return -angleIncrement * 2
+    if (difference === 3 || difference === -(pointCount - 3))
+      return -angleIncrement * 3
+    if (difference === 4 || difference === -(pointCount - 4))
+      return angleIncrement * 2
+    if (difference === 5 || difference === -(pointCount - 5))
+      return angleIncrement
+    return 0
+  }
+
+  const handleClickPoint = (clickedPoint: IContentElement) => {
+    setActivePoint(clickedPoint)
+    setRotation(rotation + defineRotateAngle(clickedPoint))
   }
 
   const handleShiftPoint = (direction: "next" | "prev"): void => {
@@ -71,17 +86,15 @@ export const App: FC = () => {
         </div>
 
         <Reel
-          timePeriodsCount={timePeriodCount}
+          timePeriodsCount={pointCount}
           diameter={530}
-          handleChangePoint={handleChangePoint}
+          handleChangePoint={handleClickPoint}
         />
         <div className="line line-hor"></div>
         <div className="line line-ver"></div>
 
         <Switch
           contentElements={contentElements}
-          // activePoint={activePoint}
-          // setActivePoint={setActivePoint}
         />
 
         <CardSlider />
