@@ -49,7 +49,7 @@ export const ContentPoint: FC<IContentPoint> = ({
           transform: `rotate(${
             /*360 - rotation * (index + 1) + */ angleIncrement
           }deg)`,
-        }} // TODO/рассчитать формулу поворота эл-та
+        }} // TODO/ рассчитать формулу поворота эл-та
       >
         <p className="component-point__number">{index + 1}</p>
 
