@@ -4,8 +4,7 @@ import { IButtonArrow } from "./interface"
 
 export const ButtonArrow: FC<IButtonArrow> = ({
   onClick = () => {},
-  width = "40px",
-  height = "40px",
+  diameter = 40,
   isDisabled,
   arrowWidth = 10,
   arrowHeight = 14,
@@ -14,8 +13,8 @@ export const ButtonArrow: FC<IButtonArrow> = ({
   pathColor = "#000",
 }) => {
   const styleObj = {
-    width: width,
-    height: height,
+    width: diameter,
+    height: diameter,
     backgroundColor: bgColor,
   }
 

@@ -2,9 +2,10 @@ import React, { FC, useEffect, useRef } from "react"
 import { IContentPoint } from "./interface"
 import { IContentElement } from "models"
 import { gsap } from "gsap"
+import "./contentPoint.scss"
 
 export const ContentPoint: FC<IContentPoint> = ({
-  contentElement,
+  contentEl,
   activeEl,
   index,
   onClickItem,
@@ -25,28 +26,28 @@ export const ContentPoint: FC<IContentPoint> = ({
   }, [activeEl])
 
   const getActiveClassname = (el: IContentElement): string => {
-    if (el.id === activeEl.id) return "component-reel__point-wrapper--active"
+    if (el.id === activeEl.id) return "component-contentPoint-wrapper--active"
     return ""
   }
 
   return (
     <button
-      key={contentElement.id}
+      key={contentEl.id}
       ref={(el: HTMLButtonElement) => (pointWrapperRefs.current[index] = el)}
-      onClick={() => onClickItem(contentElement)}
-      className={`component-reel__point-wrapper ${getActiveClassname(
-        contentElement
+      onClick={() => onClickItem(contentEl)}
+      className={`component-contentPoint-wrapper ${getActiveClassname(
+        contentEl
       )}`}
       style={{ transform: `rotate(${angleIncrement * index}deg)` }}
     >
       <div
-        className="component-reel__point"
+        className="component-contentPoint"
         style={{ transform: `rotate(-${angleIncrement * index}deg)` }}
       >
-        <p className="component-reel__number">{index + 1}</p>
+        <p className="component-contentPoint__number">{index + 1}</p>
 
-        {contentElement.id === activeEl.id && (
-          <p ref={titleRef} className="component-reel__title">
+        {contentEl.id === activeEl.id && (
+          <p ref={titleRef} className="component-contentPoint__title">
             {activeEl.title}
           </p>
         )}

@@ -45,52 +45,7 @@ export const Reel: FC<IReel> = ({
 
   const handleClickContentEl = (contentEl: IContentElement) => {
     setActiveEl(contentEl)
-    // rotatePoints(pointWrapperRefs, 650, angleIncrement)
   }
-
-  // function moveAlongArc(target: any, radius: any, duration: any) {
-  //   const centerX = window.innerWidth / 2; // X-координата центра дуги
-  //   const centerY = window.innerHeight / 2; // Y-координата центра дуги
-  //   const startAngle = 90; // Начальный угол (90 градусов соответствует верхней точке)
-  //   const endAngle = 0; // Конечный угол (0 градусов соответствует правой точке)
-
-  //   gsap.to(target, {
-  //     motionPath: {
-  //       path: { // Описываем дугу как кривую Безье с контрольными точками
-  //         curviness: 1.25,
-  //         autoRotate: true,
-  //         type: "thru",
-  //         values: [
-  //           { x: centerX + radius, y: centerY }, // Начальная точка
-  //           { x: centerX, y: centerY - radius * 0.866 }, // Контрольная точка 1
-  //           { x: centerX - radius, y: centerY }, // Конечная точка (контрольная точка 2)
-  //         ],
-  //       },
-  //       alignOrigin: [0.5, 0.5], // Выравнивание центра объекта
-  //       type: "thru",
-  //     },
-  //     duration: duration,
-  //   });
-  // }
-
-  // const rotatePoints = (elementRefs: any, radius: number, angle: number) => {
-  //   const element = elementRef.current;
-
-  //   if (element) {
-  //     const arcPath = `M0,0 A${radius},${radius} 0 0,0 ${-radius},${0}`;
-  //     const animationDuration = 2; // seconds
-
-  //     gsap.to(element, {
-  //       motionPath: {
-  //         path: arcPath,
-  //         align: arcPath,
-  //         alignOrigin: [0.5, 0.5],
-  //       },
-  //       duration: animationDuration,
-  //       ease: 'power1.out',
-  //     });
-  //   }
-  // }
 
   return (
     <div
@@ -108,7 +63,7 @@ export const Reel: FC<IReel> = ({
       {contentElements.map((item: IContentElement, index) => (
         <ContentPoint
           key={item.id}
-          contentElement={item}
+          contentEl={item}
           activeEl={activeEl}
           index={index}
           onClickItem={handleClickContentEl}

@@ -2,7 +2,7 @@ import { IContentElement } from "models"
 import { LegacyRef, MutableRefObject } from "react"
 
 export interface IContentPoint {
-    contentElement: IContentElement
+    contentEl: IContentElement
     activeEl: IContentElement
     index: number
     onClickItem: (item: IContentElement) => void

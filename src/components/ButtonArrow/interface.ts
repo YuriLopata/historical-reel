@@ -1,7 +1,6 @@
 export interface IButtonArrow {
   onClick: any
-  width?: string
-  height?: string
+  diameter?: number
   arrowWidth?: number
   arrowHeight?: number
   bgColor?: string

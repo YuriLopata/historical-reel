@@ -1,0 +1,82 @@
+.component-contentPoint-wrapper {
+    position: absolute;
+    top: calc(50% - 27.5px);
+    left: calc(50% - 27.5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+    background: transparent;
+    border-radius: 100%;
+    z-index: 10;
+
+    &:hover,
+    &:focus {
+        .component-contentPoint {
+            width: 56px;
+            height: 56px;
+            background: #f4f4f9;
+            border: 1px solid #9397a8;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        .component-contentPoint__number {
+            opacity: 1 !important;
+            font-size: 20px !important;
+        }
+    }
+
+    .component-contentPoint {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 6px;
+        height: 6px;
+        border-radius: 100%;
+        background: #464f7b;
+        color: #464f7b;
+        cursor: pointer;
+        transition: all 0.6s ease;
+
+        p {
+            font-size: 20px;
+            user-select: none;
+        }
+
+        .component-contentPoint__number {
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+    }
+}
+
+.component-contentPoint-wrapper--active {
+    width: 56px;
+    height: 56px;
+    background: #f4f4f9;
+    z-index: 20;
+
+    .component-contentPoint {
+        position: relative;
+        width: 56px;
+        height: 56px;
+        background: #f4f4f9;
+        border: 1px solid #9397a8;
+
+        .component-contentPoint__number {
+            opacity: 1;
+        }
+
+        .component-contentPoint__title {
+            position: absolute;
+            top: calc(50% - 13px);
+            left: 76px;
+            font-weight: 700;
+            opacity: 0;
+            cursor: default;
+        }
+    }
+}

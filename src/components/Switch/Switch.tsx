@@ -42,16 +42,14 @@ export const Switch: FC<ISwitch> = ({
       <div className="component-switch__buttons">
         <ButtonArrow
           onClick={() => handleMoveEl("prev")}
-          width="50px"
-          height="50px"
+          diameter={50}
           direction="left"
           bgColor="#f4f3f9"
         />
 
         <ButtonArrow
           onClick={() => handleMoveEl("next")}
-          width="50px"
-          height="50px"
+          diameter={50}
           bgColor="#f4f3f9"
         />
       </div>
