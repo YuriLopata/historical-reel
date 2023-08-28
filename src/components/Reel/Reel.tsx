@@ -1,20 +1,19 @@
-import React, { FC, useEffect, useRef, useState } from "react"
+import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import { contentElements } from "../../assets/db"
 import { IReel } from "./interface"
 import "./reel.scss"
 import { IContentElement } from "models"
 import { ContentPoint } from "../ContentPoint/ContentPoint"
-import { gsap } from "gsap"
+import { AppContext } from "../../context/AppContext"
 
 export const Reel: FC<IReel> = ({
   timePeriodsCount,
   diameter,
-  activeEl,
-  angleIncrement,
-  rotation,
   handleClickContentEl
 }) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
+
+  const {activeEl, rotation, angleIncrement} = useContext(AppContext)
 
   const defineDefaultAngle = (): number => {
     if (timePeriodsCount === 5) return -36
@@ -42,13 +41,10 @@ export const Reel: FC<IReel> = ({
             <ContentPoint
               key={item.id}
               contentEl={item}
-              activeEl={activeEl}
               index={index}
               onClickItem={handleClickContentEl}
-              angleIncrement={angleIncrement}
               angle={index * angleIncrement + rotation}
               defaultAngle={defaultAngle}
-              rotation={rotation}
             />
           )
         })}

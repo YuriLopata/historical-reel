@@ -1,21 +1,21 @@
-import React, { FC, useEffect, useRef } from "react"
+import React, { FC, useContext, useEffect, useRef } from "react"
 import { IContentPoint } from "./interface"
 import { IContentElement } from "models"
 import { gsap } from "gsap"
 import "./contentPoint.scss"
+import { AppContext } from "../../context/AppContext"
 
 export const ContentPoint: FC<IContentPoint> = ({
   contentEl,
-  activeEl,
   index,
   onClickItem,
-  angleIncrement,
   angle,
   defaultAngle,
-  rotation
 }) => {
   const pointRef = useRef<HTMLButtonElement | null>(null)
   const titleRef = useRef<HTMLParagraphElement | null>(null)
+
+  const {angleIncrement, rotation, activeEl} = useContext(AppContext)
 
   useEffect(() => {
     if (titleRef.current) {
