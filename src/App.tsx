@@ -25,18 +25,42 @@ export const App: FC = () => {
     const currentIndex = contentElements.findIndex(
       (el: IContentElement) => el.id === clickedPoint.id
     )
-    const difference = currentIndex - activeIndex
+    const diff = currentIndex - activeIndex
 
-    if (difference === 1 || difference === -(pointCount - 1))
-      return -angleIncrement
-    if (difference === 2 || difference === -(pointCount - 2))
-      return -angleIncrement * 2
-    if (difference === 3 || difference === -(pointCount - 3))
-      return -angleIncrement * 3
-    if (difference === 4 || difference === -(pointCount - 4))
-      return angleIncrement * 2
-    if (difference === 5 || difference === -(pointCount - 5))
-      return angleIncrement
+    if (pointCount == 6) {
+      if (diff === 1 || diff === -(pointCount - 1)) return -angleIncrement
+      if (diff === 2 || diff === -(pointCount - 2)) return -angleIncrement * 2
+      if (diff === 3 || diff === -(pointCount - 3)) return angleIncrement * 3
+      if (diff === 4 || diff === -(pointCount - 4)) return angleIncrement * 2
+      if (diff === 5 || diff === -(pointCount - (pointCount - 1)))
+        return angleIncrement
+    }
+
+    if (pointCount == 5) {
+      if (diff === 1 || diff === -(pointCount - 1)) return -angleIncrement
+      if (diff === 2 || diff === -(pointCount - 2)) return -angleIncrement * 2
+      if (diff === 3 || diff === -(pointCount - 3)) return angleIncrement * 2
+      if (diff === 4 || diff === -(pointCount - (pointCount - 1)))
+        return angleIncrement
+    }
+
+    if (pointCount == 4) {
+      if (diff === 1 || diff === -(pointCount - 1)) return -angleIncrement
+      if (diff === 2 || diff === -(pointCount - 2)) return -angleIncrement * 2
+      if (diff === 3 || diff === -(pointCount - (pointCount - 1)))
+        return angleIncrement
+    }
+
+    if (pointCount == 3) {
+      if (diff === 1 || diff === -(pointCount - 1)) return -angleIncrement
+      if (diff === 2 || diff === -(pointCount - (pointCount - 1)))
+        return angleIncrement
+    }
+
+    if (pointCount == 2) {
+      if (diff === 1 || diff === -(pointCount - (pointCount - 1)))
+        return -angleIncrement
+    }
     return 0
   }
 
@@ -93,9 +117,7 @@ export const App: FC = () => {
         <div className="line line-hor"></div>
         <div className="line line-ver"></div>
 
-        <Switch
-          contentElements={contentElements}
-        />
+        <Switch contentElements={contentElements} />
 
         <CardSlider />
       </div>
