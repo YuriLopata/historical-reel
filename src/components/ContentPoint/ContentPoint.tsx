@@ -39,6 +39,7 @@ export const ContentPoint: FC<IContentPoint> = ({
       ref={pointRef}
       onClick={() => handleClickPoint(contentEl)}
       className={`component-point-wrapper ${getActiveClassname(contentEl)}`}
+      tabIndex={getActiveClassname(contentEl) !== "" ? -1 : 0}
       style={{
         transform: `rotate(${angle + defaultAngle}deg)`,
       }}
