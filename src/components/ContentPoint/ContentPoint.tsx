@@ -29,7 +29,9 @@ export const ContentPoint: FC<IContentPoint> = ({
     if (!isMounted.current) {
       isMounted.current = true
 
-      gsap.set(titleRef.current, { opacity: 1 })
+      if (titleRef.current) {
+        gsap.set(titleRef.current, { opacity: 1 })
+      }
 
       return
     }
@@ -73,7 +75,7 @@ export const ContentPoint: FC<IContentPoint> = ({
           className="component-point__number"
           style={{
             transform: `rotate(${defineReelRotate(contentEl)}deg)`,
-            transition: `transform ${animDuration}s ease`
+            transition: `transform ${animDuration}s ease`,
           }}
         >
           {index + 1}

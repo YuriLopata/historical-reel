@@ -9,7 +9,7 @@ import { AppContext } from "../../context/AppContext"
 export const Reel: FC<IReel> = ({ timePeriodsCount, diameter }) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
 
-  const { rotation, angleIncrement } = useContext(AppContext)
+  const { rotation, angleIncrement, reelTopIndent } = useContext(AppContext)
 
   const defineDefaultAngle = (): number => {
     if (timePeriodsCount === 5) return -36
@@ -27,7 +27,7 @@ export const Reel: FC<IReel> = ({ timePeriodsCount, diameter }) => {
         width: `${diameter}px`,
         height: `${diameter}px`,
         left: `calc(50% - ${diameter}px / 2)`,
-        top: `calc(480px - ${diameter}px / 2)`,
+        top: `calc(${reelTopIndent}px - ${diameter}px / 2)`,
       }}
     >
       <div className="component-reel__reel">

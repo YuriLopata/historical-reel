@@ -15,6 +15,7 @@ export interface IAppContext {
     animDuration: number
     reelDiameter: number
     pointDiameter: number
+    reelTopIndent: number
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -29,5 +30,6 @@ export const AppContext = createContext<IAppContext>({
     definePointRotate: () => 0,
     animDuration: 0,
     reelDiameter: 0,
-    pointDiameter: 0
+    pointDiameter: 0,
+    reelTopIndent: 0
 })
