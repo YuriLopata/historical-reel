@@ -20,6 +20,8 @@ export const ContentPoint: FC<IContentPoint> = ({
     handleClickPoint,
     defineReelRotate,
     definePointRotate,
+    reelDiameter,
+    pointDiameter,
   } = useContext(AppContext)
 
   useEffect(() => {
@@ -46,7 +48,10 @@ export const ContentPoint: FC<IContentPoint> = ({
       className={`component-point-wrapper ${getActiveClassname(contentEl)}`}
       tabIndex={getActiveClassname(contentEl) !== "" ? -1 : 0}
       style={{
+        width: pointDiameter,
+        height: pointDiameter,
         transform: `rotate(${angle + defaultAngle}deg)`,
+        transformOrigin: `${-(reelDiameter / 2 - pointDiameter / 2)}px 27.5px`, // 237
         transition: `transform ${animDuration}s ease`
       }}
     >

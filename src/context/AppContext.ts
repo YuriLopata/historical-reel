@@ -13,6 +13,8 @@ export interface IAppContext {
     defineReelRotate: (clickedPoint: IContentElement) => number
     definePointRotate: () => number
     animDuration: number
+    reelDiameter: number
+    pointDiameter: number
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -25,5 +27,7 @@ export const AppContext = createContext<IAppContext>({
     handleClickPoint: () => {},
     defineReelRotate: () => 0,
     definePointRotate: () => 0,
-    animDuration: 0
+    animDuration: 0,
+    reelDiameter: 0,
+    pointDiameter: 0
 })

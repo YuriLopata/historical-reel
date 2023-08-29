@@ -14,6 +14,8 @@ export const App: FC = () => {
   const [activePoint, setActivePoint] = useState<IContentElement>(
     contentElements[0]
   )
+  const reelDiameter = 530
+  const pointDiameter = 56
   const pointCount = contentElements.length
   const angleIncrement: number = 360 / pointCount // град. между точками
   const animDuration: number = 1 // секунд
@@ -113,6 +115,8 @@ export const App: FC = () => {
         defineReelRotate,
         definePointRotate,
         animDuration,
+        reelDiameter,
+        pointDiameter,
       }}
     >
       <div className="wrapper">
@@ -123,7 +127,7 @@ export const App: FC = () => {
           <Year year={activePoint.yearEnd} color="#f900a5" />
         </div>
 
-        <Reel timePeriodsCount={pointCount} diameter={530} />
+        <Reel timePeriodsCount={pointCount} diameter={reelDiameter} />
         <div className="line line-hor"></div>
         <div className="line line-ver"></div>
 

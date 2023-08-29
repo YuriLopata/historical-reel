@@ -1,5 +1,5 @@
 import { ICard } from "models"
-import React, { FC, useContext, useEffect, useRef, useState } from "react"
+import React, { FC, LegacyRef, useContext, useEffect, useRef, useState } from "react"
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react"
 import "swiper/scss"
 import { ButtonArrow } from "../ButtonArrow/ButtonArrow"
@@ -11,23 +11,18 @@ import { AppContext } from "../../context/AppContext"
 
 export const CardSlider: FC<ICardSlider> = () => {
   const [activeSlide, setActiveSlide] = useState<number>(0)
-  const cardSliderRef = useRef<any>(null)
+  const cardSliderRef = useRef<HTMLDivElement | null>(null)
   const swiperRef = useRef<SwiperClass | null>(null)
   const { activePoint, animDuration } = useContext(AppContext)
 
-  useEffect(() => {
-    gsap.to(
-      cardSliderRef.current,
-      { opacity: 1, duration: 1, delay: 0 }
-    )
-  }, [])
+  console.log('CardSlider activePoint: ', activePoint);
 
   useEffect(() => {
-    gsap.fromTo(
+    if (cardSliderRef.current) {gsap.fromTo(
       cardSliderRef.current,
       { opacity: 0 },
       { opacity: 1, duration: 1, delay: animDuration }
-    )
+    )}
   }, [activePoint])
 
   const getCardsCount = (): number => {
