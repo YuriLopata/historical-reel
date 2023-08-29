@@ -38,8 +38,6 @@ export const ContentPoint: FC<IContentPoint> = ({
     return ""
   }
 
-  console.log(index, defineReelRotate(contentEl))
-
   return (
     <button
       key={contentEl.id}

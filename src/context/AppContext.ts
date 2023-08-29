@@ -11,6 +11,7 @@ export interface IAppContext {
     handleClickPoint: (clickedPoint: IContentElement) => void
     defineReelRotate: (clickedPoint: IContentElement) => number
     definePointRotate: () => number
+    animDuration: number
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -21,5 +22,6 @@ export const AppContext = createContext<IAppContext>({
     handleShiftPoint: () => {},
     handleClickPoint: () => {},
     defineReelRotate: () => 0,
-    definePointRotate: () => 0
+    definePointRotate: () => 0,
+    animDuration: 0
 })

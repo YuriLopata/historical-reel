@@ -8,14 +8,16 @@ import { Switch } from "./components/Switch/Switch"
 import { Year } from "./components/Year/Year"
 import "./index.scss"
 import { AppContext } from "./context/AppContext"
+import { gsap } from "gsap"
 
 export const App: FC = () => {
+  const [rotation, setRotation] = useState<number>(0)
   const [activePoint, setActivePoint] = useState<IContentElement>(
     contentElements[0]
   )
-  const [rotation, setRotation] = useState<number>(0)
   const pointCount = contentElements.length
-  const angleIncrement = 360 / pointCount
+  const angleIncrement: number = 360 / pointCount // град. между точками
+  const animDuration: number = 1.2 // секунд
 
   const activeIndex = contentElements.findIndex(
     (el: IContentElement) => el.id === activePoint.id
@@ -110,6 +112,7 @@ export const App: FC = () => {
         handleClickPoint,
         defineReelRotate,
         definePointRotate,
+        animDuration,
       }}
     >
       <div className="wrapper">

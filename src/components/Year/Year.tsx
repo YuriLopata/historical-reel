@@ -1,35 +1,25 @@
-import React, { FC, useEffect, useRef } from "react"
+import React, { FC, useContext, useEffect, useRef } from "react"
 import { IYear } from "./interface"
 import "./year.scss"
 import { gsap } from "gsap"
+import { AppContext } from "../../context/AppContext"
 
 export const Year: FC<IYear> = ({ year, color = "#000" }) => {
   const yearRef = useRef<any>(null)
 
+  const { animDuration } = useContext(AppContext)
+
   useEffect(() => {
-    const currentYear = parseInt(yearRef.current.innerText, 10);
-    const newYear = parseInt(String(year), 10);
-    const duration = 5
-    const incrementDuration = 5 / (currentYear - newYear);
+    const currentYear = parseInt(yearRef.current.innerText, 10)
+    const newYear = parseInt(String(year), 10)
+    const incrementDuration = animDuration / (currentYear - newYear)
 
     gsap.fromTo(
       yearRef.current,
       { opacity: 0 },
       { opacity: 1, duration: 1, delay: 0 } // TODO/ рассчитать задержку после анимации вращения
-    );
-
-    // if (!isNaN(currentYear) && !isNaN(newYear) && currentYear !== newYear) {
-    //   const timeline = gsap.timeline();
-
-    //   // Counting animation
-    //   for (let i = currentYear + 1; i <= newYear; i++) {
-    //     timeline.to(yearRef.current, {
-    //       duration: incrementDuration,
-    //       // text: { value: String(i), format: Math.floor },
-    //     });
-    //   }
-    // }
-  }, [year]);
+    )
+  }, [year])
 
   return (
     <div ref={yearRef} className={`component-year`} style={{ color: color }}>
