@@ -116,15 +116,16 @@ export const App: FC = () => {
         definePointRotate,
         animDuration,
         reelDiameter,
-        pointDiameter,
+        pointDiameter,   // «»
       }}
     >
       <div className="wrapper">
         <Header title="Исторические даты" />
 
         <div className="years">
-          <Year year={activePoint.yearStart} color="#7500f0" />
-          <Year year={activePoint.yearEnd} color="#f900a5" />
+          <Year year={activePoint.yearStart} color="#5D5FEF" />
+          <Year year={activePoint.yearEnd} color="#EF5DA8
+" />
         </div>
 
         <Reel timePeriodsCount={pointCount} diameter={reelDiameter} />

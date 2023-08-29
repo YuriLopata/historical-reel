@@ -35,8 +35,8 @@ export const ButtonArrow: FC<IButtonArrow> = ({
       onClick={onClick}
       style={styleObj}
       disabled={
-        (canDisable && isFirst && direction === "left") ||
-        (isLast && direction !== "left")
+        canDisable &&
+        ((isFirst && direction === "left") || (isLast && direction !== "left"))
       }
     >
       <svg

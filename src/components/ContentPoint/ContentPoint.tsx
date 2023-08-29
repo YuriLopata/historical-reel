@@ -59,7 +59,7 @@ export const ContentPoint: FC<IContentPoint> = ({
         width: pointDiameter,
         height: pointDiameter,
         transform: `rotate(${angle + defaultAngle}deg)`,
-        transformOrigin: `${-(reelDiameter / 2 - pointDiameter / 2)}px 27.5px`, // 237
+        transformOrigin: `${-(reelDiameter / 2 - pointDiameter / 2)}px 27.5px`,
         transition: `transform ${animDuration}s ease`,
       }}
     >
@@ -71,7 +71,10 @@ export const ContentPoint: FC<IContentPoint> = ({
       >
         <p
           className="component-point__number"
-          style={{ transform: `rotate(${defineReelRotate(contentEl)}deg)` }}
+          style={{
+            transform: `rotate(${defineReelRotate(contentEl)}deg)`,
+            transition: `transform ${animDuration}s ease`
+          }}
         >
           {index + 1}
         </p>
