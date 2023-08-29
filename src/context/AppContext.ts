@@ -16,6 +16,7 @@ export interface IAppContext {
     reelDiameter: number
     pointDiameter: number
     reelTopIndent: number
+    isMobile: boolean
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -31,5 +32,6 @@ export const AppContext = createContext<IAppContext>({
     animDuration: 0,
     reelDiameter: 0,
     pointDiameter: 0,
-    reelTopIndent: 0
+    reelTopIndent: 0,
+    isMobile: false
 })

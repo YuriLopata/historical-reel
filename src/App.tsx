@@ -1,5 +1,5 @@
 import { IContentElement } from "models"
-import React, { FC, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { contentElements } from "./assets/db"
 import { CardSlider } from "./components/CardSlider/CardSlider"
 import { Header } from "./components/Header/Header"
@@ -14,9 +14,12 @@ export const App: FC = () => {
   const [activePoint, setActivePoint] = useState<IContentElement>(
     contentElements[0]
   )
-  const reelDiameter = 530 // px
-  const pointDiameter = 56 // px
-  const reelTopIndent = 480 // px от центра
+  const [isTablet, setIsTablet] = useState<boolean>(false)
+  const [isLandscape, setIsLandscape] = useState<boolean>(false)
+  const [isMobile, setIsMobile] = useState<boolean>(false)
+  let reelDiameter = 530 // px
+  let pointDiameter = 56 // px
+  let reelTopIndent = 480 // px от центра
   const pointCount = contentElements.length
   const angleIncrement: number = 360 / pointCount // град. между точками
   const animDuration: number = 1 // секунд
@@ -24,6 +27,24 @@ export const App: FC = () => {
   const activeIndex = contentElements.findIndex(
     (el: IContentElement) => el.id === activePoint.id
   )
+
+  if (window.innerWidth < 1036) {
+    reelDiameter = 436
+    reelTopIndent = 400
+  }
+
+  useEffect(() => {
+    const checkScreenWidth = () => {
+      setIsTablet(window.innerWidth < 1121)
+      setIsLandscape(window.innerWidth < 1036)
+      setIsMobile(window.innerWidth < 576)
+    }
+    window.addEventListener("resize", checkScreenWidth)
+    checkScreenWidth()
+    return () => {
+      window.removeEventListener("resize", checkScreenWidth)
+    }
+  }, [])
 
   const definePointRotate = (): number => {
     if (pointCount === 5 || pointCount === 4) return angleIncrement / 2
@@ -119,6 +140,7 @@ export const App: FC = () => {
         reelDiameter,
         pointDiameter,
         reelTopIndent,
+        isMobile,
       }}
     >
       <div className="wrapper">
@@ -133,12 +155,13 @@ export const App: FC = () => {
           />
         </div>
 
-        <Reel timePeriodsCount={pointCount} diameter={reelDiameter} />
+        {!isMobile && <Reel timePeriodsCount={pointCount} diameter={reelDiameter} />}
+
         <div
           className="line line-hor"
           style={{ top: `${reelTopIndent}px` }}
         ></div>
-        <div className="line line-ver"></div>
+        {!isMobile && <div className="line line-ver"></div>}
 
         <Switch elCount={pointCount} />
 

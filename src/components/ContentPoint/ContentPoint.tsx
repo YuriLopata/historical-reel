@@ -43,7 +43,7 @@ export const ContentPoint: FC<IContentPoint> = ({
         { opacity: 1, duration: 1, delay: animDuration }
       )
     }
-  }, [activePoint])
+  }, [activePoint, animDuration, isMounted, titleRef])
 
   const getActiveClassname = (el: IContentElement): string => {
     if (el.id === activePoint.id) return "component-point-wrapper--active"

@@ -93,12 +93,43 @@ body {
       }
     }
 
+    .component-year {
+      margin-top: 90px;
+    }
+
     .line-hor {
-      top: 390px
+      top: 390px;
     }
   }
 }
 
-@media screen and (max-width: 321px) {
-  
+@media screen and (max-width: 1036px) {
+  .component-year {
+    font-size: 160px;
+    margin-top: 36px !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .wrapper {
+    padding-top: 60px;
+    border: none;
+
+    .component-header {
+      h2 {
+        font-size: 20px;
+        line-height: 20px;
+      }
+    }
+
+    .years {
+      margin-top: 42px;
+
+      .component-year {
+        font-size: 56px;
+        line-height: 73px;
+        margin-top: 0 !important;
+      }
+    }
+  }
 }

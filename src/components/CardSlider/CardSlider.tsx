@@ -29,7 +29,7 @@ export const CardSlider: FC<ICardSlider> = () => {
         { opacity: 1, duration: 1, delay: animDuration }
       )
     }
-  }, [activePoint, animDuration])
+  }, [activePoint, animDuration, isMounted, cardSliderRef])
 
   const getCardsCount = (): number => {
     const cardCount = activePoint.cards.length
