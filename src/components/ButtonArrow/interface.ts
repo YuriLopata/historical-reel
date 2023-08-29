@@ -4,6 +4,6 @@ export interface IButtonArrow {
   arrowWidth?: number
   arrowHeight?: number
   bgColor?: string
-  pathColor?: string
+  arrowColor?: string
   direction?: "right" | "left"
 }

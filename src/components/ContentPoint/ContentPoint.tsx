@@ -15,7 +15,7 @@ export const ContentPoint: FC<IContentPoint> = ({
   const titleRef = useRef<HTMLParagraphElement | null>(null)
 
   const {
-    angleIncrement,
+    animDuration,
     activePoint,
     handleClickPoint,
     defineReelRotate,
@@ -25,10 +25,10 @@ export const ContentPoint: FC<IContentPoint> = ({
   useEffect(() => {
     if (titleRef.current) {
       const titleAnimation = gsap.to(titleRef.current, {
-        duration: 2,
+        duration: 1,
         opacity: 1,
       })
-      titleAnimation.delay(0) // TODO/ рассчитать задержку после анимации вращения
+      titleAnimation.delay(animDuration)
       titleAnimation.play()
     }
   }, [activePoint])
@@ -47,6 +47,7 @@ export const ContentPoint: FC<IContentPoint> = ({
       tabIndex={getActiveClassname(contentEl) !== "" ? -1 : 0}
       style={{
         transform: `rotate(${angle + defaultAngle}deg)`,
+        transition: `transform ${animDuration}s ease`
       }}
     >
       <div

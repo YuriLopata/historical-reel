@@ -57,7 +57,7 @@ export const CardSlider: FC<ICardSlider> = () => {
           arrowHeight={12}
           direction="left"
           bgColor="#fff"
-          pathColor="#554aef"
+          arrowColor="#554aef"
         />
       )}
 
@@ -82,7 +82,7 @@ export const CardSlider: FC<ICardSlider> = () => {
           arrowWidth={8}
           arrowHeight={12}
           bgColor="#fff"
-          pathColor="#554aef"
+          arrowColor="#554aef"
         />
       )}
     </div>

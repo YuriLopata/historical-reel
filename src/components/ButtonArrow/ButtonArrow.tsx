@@ -10,7 +10,7 @@ export const ButtonArrow: FC<IButtonArrow> = ({
   arrowHeight = 14,
   direction = "right",
   bgColor = "#fff",
-  pathColor = "#000",
+  arrowColor = "#000",
 }) => {
   const { activeIndex, pointCount } = useContext(AppContext)
 
@@ -44,7 +44,7 @@ export const ButtonArrow: FC<IButtonArrow> = ({
       >
         <path
           d="M8.49988 0.750001L2.24988 7L8.49988 13.25"
-          stroke={pathColor}
+          stroke={arrowColor}
           strokeWidth="2"
         />
       </svg>
