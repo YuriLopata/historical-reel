@@ -19,12 +19,14 @@ export const Switch: FC<ISwitch> = ({ elCount }) => {
           diameter={50}
           direction="left"
           bgColor="#f4f3f9"
+          canDisable
         />
 
         <ButtonArrow
           onClick={() => handleClickSwitch("next")}
           diameter={50}
           bgColor="#f4f3f9"
+          canDisable
         />
       </div>
     </div>

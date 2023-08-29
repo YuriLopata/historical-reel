@@ -9,6 +9,7 @@ export const ButtonArrow: FC<IButtonArrow> = ({
   arrowWidth = 10,
   arrowHeight = 14,
   direction = "right",
+  canDisable = false,
   bgColor = "#fff",
   arrowColor = "#000",
 }) => {
@@ -33,7 +34,10 @@ export const ButtonArrow: FC<IButtonArrow> = ({
       className={`component-buttonArrow ${dirClassName}`}
       onClick={onClick}
       style={styleObj}
-      disabled={isFirst && direction === "left" || isLast && direction !== "left"}
+      disabled={
+        (canDisable && isFirst && direction === "left") ||
+        (isLast && direction !== "left")
+      }
     >
       <svg
         width={arrowWidth}

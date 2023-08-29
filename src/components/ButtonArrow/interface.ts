@@ -4,6 +4,7 @@ export interface IButtonArrow {
   arrowWidth?: number
   arrowHeight?: number
   bgColor?: string
+  canDisable?: boolean
   arrowColor?: string
   direction?: "right" | "left"
 }
