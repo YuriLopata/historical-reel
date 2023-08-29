@@ -6,13 +6,10 @@ import { IContentElement } from "models"
 import { ContentPoint } from "../ContentPoint/ContentPoint"
 import { AppContext } from "../../context/AppContext"
 
-export const Reel: FC<IReel> = ({
-  timePeriodsCount,
-  diameter,
-}) => {
+export const Reel: FC<IReel> = ({ timePeriodsCount, diameter }) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
 
-  const {activePoint, rotation, angleIncrement} = useContext(AppContext)
+  const { rotation, angleIncrement } = useContext(AppContext)
 
   const defineDefaultAngle = (): number => {
     if (timePeriodsCount === 5) return -36
@@ -35,7 +32,6 @@ export const Reel: FC<IReel> = ({
     >
       <div className="component-reel__reel">
         {contentElements.map((item: IContentElement, index) => {
-
           return (
             <ContentPoint
               key={item.id}

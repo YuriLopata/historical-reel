@@ -14,7 +14,8 @@ export const ContentPoint: FC<IContentPoint> = ({
   const pointRef = useRef<HTMLButtonElement | null>(null)
   const titleRef = useRef<HTMLParagraphElement | null>(null)
 
-  const { angleIncrement, rotation, activePoint, handleClickPoint } = useContext(AppContext)
+  const { angleIncrement, activePoint, handleClickPoint, defineRotateAngle } =
+    useContext(AppContext)
 
   useEffect(() => {
     if (titleRef.current) {
@@ -45,12 +46,15 @@ export const ContentPoint: FC<IContentPoint> = ({
       <div
         className="component-point"
         style={{
-          transform: `rotate(${
-            /*360 - rotation * (index + 1) + */ angleIncrement
-          }deg)`,
-        }} // TODO/ рассчитать формулу поворота эл-та
+          transform: `rotate(${angleIncrement}deg)`,
+        }}
       >
-        <p className="component-point__number">{index + 1}</p>
+        <p
+          className="component-point__number"
+          style={{ transform: `rotate(${defineRotateAngle(contentEl)}deg)` }}
+        >
+          {index + 1}
+        </p>
 
         {contentEl.id === activePoint.id && (
           <p ref={titleRef} className="component-point__title">

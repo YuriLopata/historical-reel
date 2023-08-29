@@ -101,6 +101,7 @@ export const App: FC = () => {
         angleIncrement,
         handleShiftPoint,
         handleClickPoint,
+        defineRotateAngle
       }}
     >
       <div className="wrapper">
