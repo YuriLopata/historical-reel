@@ -61,10 +61,11 @@ export const App: FC = () => {
       if (diff === 1 || diff === -(pointCount - (pointCount - 1)))
         return -angleIncrement
     }
+
     return 0
   }
 
-  const handleClickPoint = (clickedPoint: IContentElement) => {
+  const handleClickPoint = (clickedPoint: IContentElement): void => {
     setActivePoint(clickedPoint)
     setRotation(rotation + defineRotateAngle(clickedPoint))
   }
@@ -99,6 +100,7 @@ export const App: FC = () => {
         rotation,
         angleIncrement,
         handleShiftPoint,
+        handleClickPoint,
       }}
     >
       <div className="wrapper">
@@ -109,11 +111,7 @@ export const App: FC = () => {
           <Year year={activePoint.yearEnd} color="#f900a5" />
         </div>
 
-        <Reel
-          timePeriodsCount={pointCount}
-          diameter={530}
-          handleChangePoint={handleClickPoint}
-        />
+        <Reel timePeriodsCount={pointCount} diameter={530} />
         <div className="line line-hor"></div>
         <div className="line line-ver"></div>
 

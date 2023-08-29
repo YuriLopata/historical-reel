@@ -9,7 +9,6 @@ import { AppContext } from "../../context/AppContext"
 export const Reel: FC<IReel> = ({
   timePeriodsCount,
   diameter,
-  handleChangePoint
 }) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
 
@@ -42,7 +41,6 @@ export const Reel: FC<IReel> = ({
               key={item.id}
               contentEl={item}
               index={index}
-              onClickItem={handleChangePoint}
               angle={index * angleIncrement + rotation}
               defaultAngle={defaultAngle}
             />

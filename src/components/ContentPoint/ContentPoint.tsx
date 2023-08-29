@@ -8,14 +8,13 @@ import { AppContext } from "../../context/AppContext"
 export const ContentPoint: FC<IContentPoint> = ({
   contentEl,
   index,
-  onClickItem,
   angle,
   defaultAngle,
 }) => {
   const pointRef = useRef<HTMLButtonElement | null>(null)
   const titleRef = useRef<HTMLParagraphElement | null>(null)
 
-  const { angleIncrement, rotation, activePoint } = useContext(AppContext)
+  const { angleIncrement, rotation, activePoint, handleClickPoint } = useContext(AppContext)
 
   useEffect(() => {
     if (titleRef.current) {
@@ -37,7 +36,7 @@ export const ContentPoint: FC<IContentPoint> = ({
     <button
       key={contentEl.id}
       ref={pointRef}
-      onClick={() => onClickItem(contentEl)}
+      onClick={() => handleClickPoint(contentEl)}
       className={`component-point-wrapper ${getActiveClassname(contentEl)}`}
       style={{
         transform: `rotate(${angle + defaultAngle}deg)`,

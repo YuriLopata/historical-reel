@@ -7,7 +7,8 @@ export interface IAppContext {
     rotation: number
     angleIncrement: number
     activeIndex: number
-    handleShiftPoint: any
+    handleShiftPoint: (direction: "next" | "prev") => void
+    handleClickPoint: (clickedPoint: IContentElement) => void
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -15,5 +16,6 @@ export const AppContext = createContext<IAppContext>({
     rotation: 0,
     angleIncrement: 0,
     activeIndex: 0,
-    handleShiftPoint: () => {}
+    handleShiftPoint: () => {},
+    handleClickPoint: () => {}
 })
