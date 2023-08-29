@@ -14,8 +14,13 @@ export const ContentPoint: FC<IContentPoint> = ({
   const pointRef = useRef<HTMLButtonElement | null>(null)
   const titleRef = useRef<HTMLParagraphElement | null>(null)
 
-  const { angleIncrement, activePoint, handleClickPoint, defineRotateAngle } =
-    useContext(AppContext)
+  const {
+    angleIncrement,
+    activePoint,
+    handleClickPoint,
+    defineReelRotate,
+    definePointRotate,
+  } = useContext(AppContext)
 
   useEffect(() => {
     if (titleRef.current) {
@@ -33,6 +38,8 @@ export const ContentPoint: FC<IContentPoint> = ({
     return ""
   }
 
+  console.log(index, defineReelRotate(contentEl))
+
   return (
     <button
       key={contentEl.id}
@@ -47,12 +54,12 @@ export const ContentPoint: FC<IContentPoint> = ({
       <div
         className="component-point"
         style={{
-          transform: `rotate(${angleIncrement}deg)`,
+          transform: `rotate(${definePointRotate()}deg)`,
         }}
       >
         <p
           className="component-point__number"
-          style={{ transform: `rotate(${defineRotateAngle(contentEl)}deg)` }}
+          style={{ transform: `rotate(${defineReelRotate(contentEl)}deg)` }}
         >
           {index + 1}
         </p>

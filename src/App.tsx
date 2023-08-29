@@ -21,7 +21,14 @@ export const App: FC = () => {
     (el: IContentElement) => el.id === activePoint.id
   )
 
-  const defineRotateAngle = (clickedPoint: IContentElement): number => {
+  const definePointRotate = (): number => {
+    if (pointCount === 5 || pointCount === 4) return angleIncrement / 2
+    if (pointCount === 3) return angleIncrement / 4
+    if (pointCount === 2) return angleIncrement / 3
+    return angleIncrement
+  }
+
+  const defineReelRotate = (clickedPoint: IContentElement): number => {
     const currentIndex = contentElements.findIndex(
       (el: IContentElement) => el.id === clickedPoint.id
     )
@@ -67,7 +74,7 @@ export const App: FC = () => {
 
   const handleClickPoint = (clickedPoint: IContentElement): void => {
     setActivePoint(clickedPoint)
-    setRotation(rotation + defineRotateAngle(clickedPoint))
+    setRotation(rotation + defineReelRotate(clickedPoint))
   }
 
   const handleShiftPoint = (direction: "next" | "prev"): void => {
@@ -101,7 +108,8 @@ export const App: FC = () => {
         angleIncrement,
         handleShiftPoint,
         handleClickPoint,
-        defineRotateAngle
+        defineReelRotate,
+        definePointRotate,
       }}
     >
       <div className="wrapper">
