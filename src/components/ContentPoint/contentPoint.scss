@@ -47,6 +47,10 @@
         .component-point__number {
             opacity: 0;
         }
+
+        .component-point__title {
+            opacity: 0;
+        }
     }
 }
 
@@ -72,32 +76,7 @@
             top: calc(50% - 13px);
             left: 76px;
             font-weight: 700;
-            opacity: 0;
             cursor: default;
         }
     }
 }
-
-// .component-point:nth-child(1) {
-//     transform: rotate(0deg) !important;
-// }
-
-// .component-point:nth-child(2) {
-//     transform: rotate(-60deg) !important;
-// }
-
-// .component-point:nth-child(3) {
-//     transform: rotate(-120deg) !important;
-// }
-
-// .component-point:nth-child(4) {
-//     transform: rotate(-180deg) !important;
-// }
-
-// .component-point:nth-child(5) {
-//     transform: rotate(-240deg) !important;
-// }
-
-// .component-point:nth-child(6) {
-//     transform: rotate(60deg) !important;
-// }

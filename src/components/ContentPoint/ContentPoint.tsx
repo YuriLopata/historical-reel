@@ -13,6 +13,7 @@ export const ContentPoint: FC<IContentPoint> = ({
 }) => {
   const pointRef = useRef<HTMLButtonElement | null>(null)
   const titleRef = useRef<HTMLParagraphElement | null>(null)
+  const isMounted = useRef<boolean>(false)
 
   const {
     animDuration,
@@ -25,13 +26,20 @@ export const ContentPoint: FC<IContentPoint> = ({
   } = useContext(AppContext)
 
   useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true
+
+      gsap.set(titleRef.current, { opacity: 1 })
+
+      return
+    }
+
     if (titleRef.current) {
-      const titleAnimation = gsap.to(titleRef.current, {
-        duration: 1,
-        opacity: 1,
-      })
-      titleAnimation.delay(animDuration)
-      titleAnimation.play()
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 1, delay: animDuration }
+      )
     }
   }, [activePoint])
 
@@ -52,7 +60,7 @@ export const ContentPoint: FC<IContentPoint> = ({
         height: pointDiameter,
         transform: `rotate(${angle + defaultAngle}deg)`,
         transformOrigin: `${-(reelDiameter / 2 - pointDiameter / 2)}px 27.5px`, // 237
-        transition: `transform ${animDuration}s ease`
+        transition: `transform ${animDuration}s ease`,
       }}
     >
       <div
