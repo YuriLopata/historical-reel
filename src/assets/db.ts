@@ -136,7 +136,7 @@ export const contentElements: IContentElement[] = [
   {
     id: 4,
     title: 'Искусство',
-    yearStart: 2014,
+    yearStart: 1978,
     yearEnd: 2021,
     cards: [
       {

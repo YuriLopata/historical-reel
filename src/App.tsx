@@ -1,5 +1,5 @@
 import { IContentElement } from "models"
-import React, { FC, useContext, useState } from "react"
+import React, { FC, useState } from "react"
 import { contentElements } from "./assets/db"
 import { CardSlider } from "./components/CardSlider/CardSlider"
 import { Header } from "./components/Header/Header"

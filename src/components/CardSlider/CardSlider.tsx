@@ -16,8 +16,12 @@ export const CardSlider: FC<ICardSlider> = () => {
   const { activePoint } = useContext(AppContext)
 
   useEffect(() => {
-    gsap.to(cardSliderRef.current, { duration: 1, opacity: 1 })
-  }, [])
+    gsap.fromTo(
+      cardSliderRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 1, delay: 0 } // TODO/ рассчитать задержку после анимации вращения
+    );
+  }, [activePoint]);
 
   const getCardsCount = (): number => {
     const cardCount = activePoint.cards.length
