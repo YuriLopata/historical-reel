@@ -1,17 +1,22 @@
-import React, { FC } from "react"
+import React, { FC, useContext } from "react"
 import "./buttonArrow.scss"
 import { IButtonArrow } from "./interface"
+import { AppContext } from "../../context/AppContext"
 
 export const ButtonArrow: FC<IButtonArrow> = ({
   onClick = () => {},
   diameter = 40,
-  isDisabled,
   arrowWidth = 10,
   arrowHeight = 14,
   direction = "right",
   bgColor = "#fff",
   pathColor = "#000",
 }) => {
+  const { activeIndex, pointCount } = useContext(AppContext)
+
+  const isFirst = activeIndex === 0
+  const isLast = activeIndex === pointCount - 1
+
   const styleObj = {
     width: diameter,
     height: diameter,
@@ -28,7 +33,7 @@ export const ButtonArrow: FC<IButtonArrow> = ({
       className={`component-buttonArrow ${dirClassName}`}
       onClick={onClick}
       style={styleObj}
-      disabled={isDisabled}
+      disabled={isFirst && direction === "left" || isLast && direction !== "left"}
     >
       <svg
         width={arrowWidth}

@@ -4,28 +4,25 @@ import { ISwitch } from "./interface"
 import "./switch.scss"
 import { AppContext } from "../../context/AppContext"
 
-export const Switch: FC<ISwitch> = ({
-  contentElements,
-}) => {
-
-  const {activeIndex, handleShiftPoint} = useContext(AppContext)
+export const Switch: FC<ISwitch> = ({ elCount }) => {
+  const { activeIndex, handleClickSwitch } = useContext(AppContext)
 
   return (
     <div className="component-switch">
       <div className="component-switch__series-segment">
-        {`0${activeIndex + 1}/0${contentElements.length}`}
+        {`0${activeIndex + 1}/0${elCount}`}
       </div>
 
       <div className="component-switch__buttons">
         <ButtonArrow
-          onClick={() => handleShiftPoint("prev")}
+          onClick={() => handleClickSwitch("prev")}
           diameter={50}
           direction="left"
           bgColor="#f4f3f9"
         />
 
         <ButtonArrow
-          onClick={() => handleShiftPoint("next")}
+          onClick={() => handleClickSwitch("next")}
           diameter={50}
           bgColor="#f4f3f9"
         />

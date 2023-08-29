@@ -6,5 +6,4 @@ export interface IButtonArrow {
   bgColor?: string
   pathColor?: string
   direction?: "right" | "left"
-  isDisabled?: boolean
 }

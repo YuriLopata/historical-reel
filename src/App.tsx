@@ -16,7 +16,7 @@ export const App: FC = () => {
   )
   const pointCount = contentElements.length
   const angleIncrement: number = 360 / pointCount // град. между точками
-  const animDuration: number = 1.2 // секунд
+  const animDuration: number = 1 // секунд
 
   const activeIndex = contentElements.findIndex(
     (el: IContentElement) => el.id === activePoint.id
@@ -78,7 +78,7 @@ export const App: FC = () => {
     setRotation(rotation + defineReelRotate(clickedPoint))
   }
 
-  const handleShiftPoint = (direction: "next" | "prev"): void => {
+  const handleClickSwitch = (direction: "next" | "prev"): void => {
     if (direction === "prev") {
       setRotation(rotation + angleIncrement)
       if (activeIndex === 0) {
@@ -105,9 +105,10 @@ export const App: FC = () => {
       value={{
         activePoint,
         activeIndex,
+        pointCount,
         rotation,
         angleIncrement,
-        handleShiftPoint,
+        handleClickSwitch,
         handleClickPoint,
         defineReelRotate,
         definePointRotate,
@@ -126,7 +127,7 @@ export const App: FC = () => {
         <div className="line line-hor"></div>
         <div className="line line-ver"></div>
 
-        <Switch contentElements={contentElements} />
+        <Switch elCount={pointCount} />
 
         <CardSlider />
       </div>

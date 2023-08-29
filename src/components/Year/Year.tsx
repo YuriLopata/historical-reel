@@ -5,7 +5,7 @@ import { gsap } from "gsap"
 import { AppContext } from "../../context/AppContext"
 
 export const Year: FC<IYear> = ({ year, color = "#000" }) => {
-  const [currentYear, setCurrentYear] = useState<any>(year)
+  const [currentYear, setCurrentYear] = useState<number>(year)
   const yearRef = useRef<any>(null)
   const { animDuration } = useContext(AppContext)
 
