@@ -18,7 +18,7 @@ export const CardSlider: FC<ICardSlider> = () => {
   useEffect(() => {
     gsap.to(
       cardSliderRef.current,
-      { opacity: 1, duration: 1, delay: 0 } // TODO/ рассчитать задержку после анимации вращения
+      { opacity: 1, duration: 1, delay: 0 }
     )
   }, [])
 
@@ -26,7 +26,7 @@ export const CardSlider: FC<ICardSlider> = () => {
     gsap.fromTo(
       cardSliderRef.current,
       { opacity: 0 },
-      { opacity: 1, duration: 1, delay: animDuration } // TODO/ рассчитать задержку после анимации вращения
+      { opacity: 1, duration: 1, delay: animDuration }
     )
   }, [activePoint])
 

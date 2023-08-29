@@ -8,7 +8,6 @@ import { Switch } from "./components/Switch/Switch"
 import { Year } from "./components/Year/Year"
 import "./index.scss"
 import { AppContext } from "./context/AppContext"
-import { gsap } from "gsap"
 
 export const App: FC = () => {
   const [rotation, setRotation] = useState<number>(0)
