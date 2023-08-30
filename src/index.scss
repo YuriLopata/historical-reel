@@ -42,7 +42,7 @@ body {
   flex-direction: column;
   min-height: 100svh;
   margin: auto;
-  padding-top: 170px;
+  padding: 170px 0 20px 0;
   border-left: 1px solid #e3e5ed;
   border-right: 1px solid #e3e5ed;
 
@@ -152,9 +152,19 @@ body {
 }
 
 @media screen and (max-width: 576px) {
+  body {
+    margin: 0;
+  }
+
   .wrapper {
-    padding-top: 60px;
+    padding: 60px 0 20px 0;
     border: none;
+
+    .component-header,
+    .years,
+    .component-switch {
+      padding: 0 20px;
+    }
 
     .component-header {
       h2 {
@@ -166,11 +176,11 @@ body {
     }
 
     .years {
-      width: 100% !important;
+      width: 100%;
       justify-content: space-between;
       transform: translateX(0);
       margin-top: 56px;
-      margin-bottom: 77px;
+      margin-bottom: 80px;
 
       .component-year {
         font-size: 56px;
@@ -186,6 +196,11 @@ body {
     .component-cardSlider {
       max-width: fit-content;
       margin: 0;
+      padding: 0 0 0 20px;
+
+      .swiper-slide-next {
+        opacity: 0.5 !important;
+      }
 
       .component-card {
         h4 {
@@ -200,8 +215,8 @@ body {
   }
 
   .component-switch {
-    margin: 46px 0 0 0 !important;
-    // margin-top: auto !important;
+    justify-self: flex-end;
+    margin: auto 0 0 0 !important;
 
     &__series-segment {
       margin-bottom: 10px;
@@ -215,6 +230,10 @@ body {
   }
 
   .line-hor {
-    background: #C7CDD9;
+    width: calc(100vw - 40px) !important;
+    background: #c7cdd9;
+    margin-bottom: 20px !important;
+    margin: 0 auto;
+    padding: 0;
   }
 }

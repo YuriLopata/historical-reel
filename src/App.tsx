@@ -32,20 +32,23 @@ export const App: FC = () => {
     (el: IContentElement) => el.id === activePoint.id
   )
 
-  if (window.innerWidth < 1121) { // desktop width
+  if (window.innerWidth < 1121) {
+    // desktop width
     reelDiameter = 436
     reelTopIndent = 400
     slideGap = 40
   }
 
-  if (window.innerWidth < 993) { // tablet width
+  if (window.innerWidth < 993) {
+    // tablet width
     reelDiameter = 362
     reelTopIndent = 358
     slideGap = 25
   }
 
-  if (window.innerWidth < 576) { // mobile width
-    reelTopIndent = 293
+  if (window.innerWidth < 576) {
+    // mobile width
+    reelTopIndent = 330
   }
 
   useEffect(() => {
@@ -156,7 +159,7 @@ export const App: FC = () => {
         pointDiameter,
         reelTopIndent,
         isMobile,
-        slideGap
+        slideGap,
       }}
     >
       <div className="wrapper">
@@ -164,26 +167,32 @@ export const App: FC = () => {
 
         <div className="years">
           <Year year={activePoint.yearStart} color="#5D5FEF" />
-          <Year
-            year={activePoint.yearEnd}
-            color="#EF5DA8
-"
-          />
+          <Year year={activePoint.yearEnd} color="#EF5DA8" />
         </div>
 
-        {!isMobile && <Reel timePeriodsCount={pointCount} diameter={reelDiameter} />}
+        {!isMobile && (
+          <>
+            <Reel timePeriodsCount={pointCount} diameter={reelDiameter} />
 
-        <div
-          className="line line-hor"
-          style={{ top: `${reelTopIndent}px` }}
-        ></div>
-        {!isMobile && <div className="line line-ver"></div>}
+            <div
+              className="line line-hor"
+              style={{ top: `${reelTopIndent}px` }}
+            ></div>
+            <div className="line line-ver"></div>
 
-        {!isMobile && <Switch elCount={pointCount} />}
+            <Switch elCount={pointCount} />
+            
+            <CardSlider />
+          </>
+        )}
 
-        <CardSlider />
-
-        {isMobile && <Switch elCount={pointCount} />}
+        {isMobile && (
+          <>
+            <div className="line-hor"></div>
+            <CardSlider />
+            <Switch elCount={pointCount} />
+          </>
+        )}
       </div>
     </AppContext.Provider>
   )
