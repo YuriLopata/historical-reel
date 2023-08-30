@@ -1,6 +1,7 @@
 const path = require("path")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 
 module.exports = {
   mode: "development",
@@ -8,6 +9,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[fullhash].js",
+  },
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
   },
   devServer: {
     port: 3000,
@@ -26,7 +30,7 @@ module.exports = {
     rules: [
       {
         test: /\.(css|sass|scss)$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
       },
       {
         test: /\.(jpg|jpeg|png|svg)$/,
