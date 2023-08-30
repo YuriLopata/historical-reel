@@ -18,7 +18,7 @@ export interface IFullReelContext {
   reelTopIndent: number
   isMobile: boolean
   slideGap: number
-  initialRender: MutableRefObject<boolean>
+  initialRender: any
 }
 
 export const FullReelContext = createContext<IFullReelContext>({
@@ -37,5 +37,5 @@ export const FullReelContext = createContext<IFullReelContext>({
   reelTopIndent: 0,
   isMobile: false,
   slideGap: 0,
-  initialRender: useRef<boolean>(false),
+  initialRender: false,
 })
