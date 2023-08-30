@@ -18,19 +18,29 @@ export const CardSlider: FC<ICardSlider> = () => {
   const cardRef = useRef<HTMLDivElement | null>(null)
   const lineRef = useRef<HTMLDivElement | null>(null)
   const swiperRef = useRef<SwiperClass | null>(null)
-  const isMounted = useRef<boolean>(false)
+  const initialRender = useRef<boolean>(true)
   const { activePoint, animDuration, slideGap, isMobile, pointCount } =
     useContext(AppContext)
 
   useEffect(() => {
-    if (!isMounted.current) {
-      isMounted.current = true
+    if (initialRender.current) {
+      initialRender.current = false
       return
     }
 
-    if (cardRef.current && lineRef.current) {
+    if (cardRef.current) {
+      gsap.killTweensOf(cardRef.current)
       gsap.fromTo(
-        [cardRef.current, lineRef.current],
+        cardRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 1, delay: animDuration }
+      )
+    }
+
+    if (lineRef.current) {
+      gsap.killTweensOf(lineRef.current)
+      gsap.fromTo(
+        lineRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 1, delay: animDuration }
       )

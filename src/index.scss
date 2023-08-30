@@ -226,7 +226,11 @@ body {
         height: 196px;
 
         .swiper-slide-next {
-          opacity: 0.5 !important;
+          opacity: 0.5;
+        }
+        
+        .swiper-slide:last-child {
+          opacity: 1 !important;
         }
       }
 
