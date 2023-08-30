@@ -14,29 +14,44 @@ export const App: FC = () => {
   const [activePoint, setActivePoint] = useState<IContentElement>(
     contentElements[0]
   )
+  const [isDesktop, setIsDesktop] = useState<boolean>(false)
   const [isTablet, setIsTablet] = useState<boolean>(false)
   const [isLandscape, setIsLandscape] = useState<boolean>(false)
   const [isMobile, setIsMobile] = useState<boolean>(false)
+
   let reelDiameter = 530 // px
   let pointDiameter = 56 // px
-  let reelTopIndent = 480 // px от центра
+  let reelTopIndent = 480 // px от центра круга
   const pointCount = contentElements.length
   const angleIncrement: number = 360 / pointCount // град. между точками
   const animDuration: number = 1 // секунд
+
+  let slideGap = 80 // px
 
   const activeIndex = contentElements.findIndex(
     (el: IContentElement) => el.id === activePoint.id
   )
 
-  if (window.innerWidth < 1036) {
+  if (window.innerWidth < 1121) { // desktop width
     reelDiameter = 436
     reelTopIndent = 400
+    slideGap = 40
+  }
+
+  if (window.innerWidth < 993) { // tablet width
+    reelDiameter = 362
+    reelTopIndent = 358
+    slideGap = 25
+  }
+
+  if (window.innerWidth < 576) { // tablet width
+    reelTopIndent = 293
   }
 
   useEffect(() => {
     const checkScreenWidth = () => {
       setIsTablet(window.innerWidth < 1121)
-      setIsLandscape(window.innerWidth < 1036)
+      setIsLandscape(window.innerWidth < 993)
       setIsMobile(window.innerWidth < 576)
     }
     window.addEventListener("resize", checkScreenWidth)
@@ -141,6 +156,7 @@ export const App: FC = () => {
         pointDiameter,
         reelTopIndent,
         isMobile,
+        slideGap
       }}
     >
       <div className="wrapper">

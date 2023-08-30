@@ -17,6 +17,8 @@ img {
 
 button {
   background-color: #fff;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 ul {
@@ -93,8 +95,13 @@ body {
       }
     }
 
-    .component-year {
-      margin-top: 90px;
+    .years {
+      margin-top: 42px;
+
+      .component-year {
+        font-size: 160px;
+        margin-top: 36px !important;
+      }
     }
 
     .line-hor {
@@ -103,10 +110,44 @@ body {
   }
 }
 
-@media screen and (max-width: 1036px) {
-  .component-year {
-    font-size: 160px;
-    margin-top: 36px !important;
+@media screen and (max-width: 993px) {
+  .wrapper {
+    padding-top: 60px;
+
+    .component-header {
+      &__line {
+        height: 100px;
+      }
+
+      h2 {
+        max-width: 260px;
+        font-size: 40px;
+      }
+    }
+
+    .years {
+      margin-top: 0px;
+      transform: translateX(-14px);
+
+      .component-year {
+        font-size: 120px;
+        margin-top: 84px !important;
+
+        &:first-child {
+          margin-right: 90px;
+        }
+      }
+    }
+
+    .component-cardSlider {
+      .component-card {
+        max-width: 250px;
+      }
+    }
+
+    .line-hor {
+      top: 390px;
+    }
   }
 }
 
@@ -117,18 +158,45 @@ body {
 
     .component-header {
       h2 {
+        max-width: 140px;
         font-size: 20px;
         line-height: 20px;
+        margin-left: 0;
       }
     }
 
     .years {
-      margin-top: 42px;
+      width: 100%;
+      justify-content: space-between;
+      transform: translateX(0);
+      margin-top: 56px;
 
       .component-year {
         font-size: 56px;
         line-height: 73px;
         margin-top: 0 !important;
+
+        &:first-child {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .component-switch {
+      margin: 0;
+    }
+
+    .component-cardSlider {
+      margin: 0;
+
+      .component-card {
+        h4 {
+          font-size: 16px;
+        }
+
+        p {
+          font-size: 14px;
+        }
       }
     }
   }

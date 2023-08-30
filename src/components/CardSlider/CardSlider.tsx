@@ -14,7 +14,7 @@ export const CardSlider: FC<ICardSlider> = () => {
   const cardSliderRef = useRef<HTMLDivElement | null>(null)
   const swiperRef = useRef<SwiperClass | null>(null)
   const isMounted = useRef<boolean>(false)
-  const { activePoint, animDuration } = useContext(AppContext)
+  const { activePoint, animDuration, slideGap, isMobile } = useContext(AppContext)
 
   useEffect(() => {
     if (!isMounted.current) {
@@ -36,6 +36,7 @@ export const CardSlider: FC<ICardSlider> = () => {
 
     if (cardCount === 1) return 1
     if (cardCount === 2) return 2
+    if (isMobile) return 1.6
     return 3
   }
   const visibleSlidesCount = getCardsCount()
@@ -63,7 +64,7 @@ export const CardSlider: FC<ICardSlider> = () => {
       )}
 
       <Swiper
-        spaceBetween={80}
+        spaceBetween={slideGap}
         slidesPerView={visibleSlidesCount}
         onSlideChange={handleSlideChange}
         onSwiper={(swiper) => (swiperRef.current = swiper)}

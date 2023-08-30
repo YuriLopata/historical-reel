@@ -17,6 +17,7 @@ export interface IAppContext {
     pointDiameter: number
     reelTopIndent: number
     isMobile: boolean
+    slideGap: number
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -33,5 +34,6 @@ export const AppContext = createContext<IAppContext>({
     reelDiameter: 0,
     pointDiameter: 0,
     reelTopIndent: 0,
-    isMobile: false
+    isMobile: false,
+    slideGap: 0
 })

@@ -58,8 +58,6 @@ export const ContentPoint: FC<IContentPoint> = ({
       className={`component-point-wrapper ${getActiveClassname(contentEl)}`}
       tabIndex={getActiveClassname(contentEl) !== "" ? -1 : 0}
       style={{
-        width: pointDiameter,
-        height: pointDiameter,
         transform: `rotate(${angle + defaultAngle}deg)`,
         transformOrigin: `${-(reelDiameter / 2 - pointDiameter / 2)}px 27.5px`,
         transition: `transform ${animDuration}s ease`,
