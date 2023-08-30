@@ -1,10 +1,10 @@
 import React, { FC, useContext } from "react"
 import { IHeader } from "./interface"
 import "./header.scss"
-import { AppContext } from "../../context/AppContext"
+import { FullReelContext } from "../../context/FullReelContext"
 
 export const Header: FC<IHeader> = ({ title }) => {
-  const {isMobile} = useContext(AppContext)
+  const {isMobile} = useContext(FullReelContext)
 
   return (
     <div className="component-header">

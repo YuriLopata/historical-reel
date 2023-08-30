@@ -9,7 +9,7 @@ import { Card } from "../Card/Card"
 import { ICardSlider } from "./interface"
 import "./cardSlider.scss"
 import { gsap } from "gsap"
-import { AppContext } from "../../context/AppContext"
+import { FullReelContext } from "../../context/FullReelContext"
 import { Switch } from "../Switch/Switch"
 import { Title } from "../Title/Title"
 
@@ -20,7 +20,7 @@ export const CardSlider: FC<ICardSlider> = () => {
   const swiperRef = useRef<SwiperClass | null>(null)
   const initialRender = useRef<boolean>(true)
   const { activePoint, animDuration, slideGap, isMobile, pointCount } =
-    useContext(AppContext)
+    useContext(FullReelContext)
 
   useEffect(() => {
     if (initialRender.current) {

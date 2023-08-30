@@ -2,7 +2,7 @@ import React, { FC, useContext, useRef } from "react"
 import { IContentPoint } from "./interface"
 import { IContentElement } from "models"
 import "./contentPoint.scss"
-import { AppContext } from "../../context/AppContext"
+import { FullReelContext } from "../../context/FullReelContext"
 import { Title } from "../Title/Title"
 
 export const ContentPoint: FC<IContentPoint> = ({
@@ -21,7 +21,7 @@ export const ContentPoint: FC<IContentPoint> = ({
     definePointRotate,
     reelDiameter,
     pointDiameter,
-  } = useContext(AppContext)
+  } = useContext(FullReelContext)
 
   const getActiveClassname = (el: IContentElement): string => {
     if (el.id === activePoint.id) return "component-point-wrapper--active"

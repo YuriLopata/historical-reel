@@ -1,14 +1,14 @@
 import React, { FC, useContext, useEffect, useRef } from "react"
 import { ICard } from "./interface"
 import "./card.scss"
-import { AppContext } from "../../context/AppContext"
+import { FullReelContext } from "../../context/FullReelContext"
 import { gsap } from "gsap"
 
 export const Card: FC<ICard> = ({ title, desc }) => {
   const cardRef = useRef<HTMLDivElement | null>(null)
   const initialRender = useRef<boolean>(true)
   const { activePoint, animDuration } =
-    useContext(AppContext)
+    useContext(FullReelContext)
 
   useEffect(() => {
     if (initialRender.current) {

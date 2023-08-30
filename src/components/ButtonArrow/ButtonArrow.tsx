@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect, useRef } from "react"
 import "./buttonArrow.scss"
 import { IButtonArrow } from "./interface"
-import { AppContext } from "../../context/AppContext"
+import { FullReelContext } from "../../context/FullReelContext"
 import { gsap } from "gsap"
 
 export const ButtonArrow: FC<IButtonArrow> = ({
@@ -13,11 +13,12 @@ export const ButtonArrow: FC<IButtonArrow> = ({
   canDisable = false,
   bgColor = "#fff",
   arrowColor = "#000",
-  canDisappear = true
+  canDisappear = true,
 }) => {
   const initialRender = useRef<boolean>(true)
   const buttonRef = useRef<HTMLButtonElement | null>(null)
-  const { activeIndex, pointCount, animDuration, activePoint } = useContext(AppContext)
+  const { activeIndex, pointCount, animDuration, activePoint } =
+    useContext(FullReelContext)
 
   const isFirst: boolean = activeIndex === 0
   const isLast: boolean = activeIndex === pointCount - 1
@@ -58,7 +59,7 @@ export const ButtonArrow: FC<IButtonArrow> = ({
 
   return (
     <button
-    ref={buttonRef}
+      ref={buttonRef}
       className={`component-buttonArrow ${dirClassName}`}
       onClick={onClick}
       style={styleObj}

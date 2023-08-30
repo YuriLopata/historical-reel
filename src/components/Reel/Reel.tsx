@@ -4,12 +4,13 @@ import { IReel } from "./interface"
 import "./reel.scss"
 import { IContentElement } from "models"
 import { ContentPoint } from "../ContentPoint/ContentPoint"
-import { AppContext } from "../../context/AppContext"
+import { FullReelContext } from "../../context/FullReelContext"
 
 export const Reel: FC<IReel> = ({ timePeriodsCount, diameter }) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
 
-  const { rotation, angleIncrement, reelTopIndent } = useContext(AppContext)
+  const { rotation, angleIncrement, reelTopIndent } =
+    useContext(FullReelContext)
 
   const defineDefaultAngle = (): number => {
     if (timePeriodsCount === 5) return -36

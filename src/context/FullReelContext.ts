@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 import { IContentElement } from "../models"
 import { contentElements } from "../assets/db"
 
-export interface IAppContext {
+export interface IFullReelContext {
     activePoint: IContentElement
     activeIndex: number
     pointCount: number
@@ -21,7 +21,7 @@ export interface IAppContext {
     initialRender: any
 }
 
-export const AppContext = createContext<IAppContext>({
+export const FullReelContext = createContext<IFullReelContext>({
     activePoint: contentElements[0],
     activeIndex: 0,
     pointCount: 0,

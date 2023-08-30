@@ -1,4 +1,4 @@
-import { AppContext } from "../../context/AppContext"
+import { FullReelContext } from "../../context/FullReelContext"
 import React, { FC, useContext, useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import "./title.scss"
@@ -6,11 +6,11 @@ import { ITitle } from "./interface"
 
 export const Title: FC<ITitle> = ({ title }) => {
   const titleRef = useRef<HTMLParagraphElement | null>(null)
-  const { activePoint, animDuration, initialRender } = useContext(AppContext)
+  const { activePoint, animDuration, initialRender } =
+    useContext(FullReelContext)
 
   useEffect(() => {
     if (initialRender.current) {
-      
       if (titleRef.current) {
         gsap.set(titleRef.current, { opacity: 1 })
       }

@@ -2,10 +2,11 @@ import React, { FC, useContext, useRef } from "react"
 import { ButtonArrow } from "../ButtonArrow/ButtonArrow"
 import { ISwitch } from "./interface"
 import "./switch.scss"
-import { AppContext } from "../../context/AppContext"
+import { FullReelContext } from "../../context/FullReelContext"
 
 export const Switch: FC<ISwitch> = ({ elCount }) => {
-  const { activeIndex, handleClickSwitch, isMobile } = useContext(AppContext)
+  const { activeIndex, handleClickSwitch, isMobile } =
+    useContext(FullReelContext)
 
   return (
     <div className="component-switch">
