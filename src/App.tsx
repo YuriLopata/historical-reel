@@ -14,7 +14,6 @@ export const App: FC = () => {
   const [activePoint, setActivePoint] = useState<IContentElement>(
     contentElements[0]
   )
-  const [isDesktop, setIsDesktop] = useState<boolean>(false)
   const [isTablet, setIsTablet] = useState<boolean>(false)
   const [isLandscape, setIsLandscape] = useState<boolean>(false)
   const [isMobile, setIsMobile] = useState<boolean>(false)
@@ -181,7 +180,7 @@ export const App: FC = () => {
             <div className="line line-ver"></div>
 
             <Switch elCount={pointCount} />
-            
+
             <CardSlider />
           </>
         )}
@@ -189,7 +188,6 @@ export const App: FC = () => {
         {isMobile && (
           <>
             <CardSlider />
-            <Switch elCount={pointCount} />
           </>
         )}
       </div>
