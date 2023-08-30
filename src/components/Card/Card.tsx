@@ -17,6 +17,7 @@ export const Card: FC<ICard> = ({ title, desc }) => {
     }
 
     if (cardRef.current) {
+      gsap.killTweensOf(cardRef.current)
       gsap.fromTo(
         cardRef.current,
         { opacity: 0 },

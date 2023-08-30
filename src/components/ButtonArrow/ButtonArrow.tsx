@@ -1,7 +1,8 @@
-import React, { FC, useContext } from "react"
+import React, { FC, useContext, useEffect, useRef } from "react"
 import "./buttonArrow.scss"
 import { IButtonArrow } from "./interface"
 import { AppContext } from "../../context/AppContext"
+import { gsap } from "gsap"
 
 export const ButtonArrow: FC<IButtonArrow> = ({
   onClick = () => {},
@@ -12,11 +13,14 @@ export const ButtonArrow: FC<IButtonArrow> = ({
   canDisable = false,
   bgColor = "#fff",
   arrowColor = "#000",
+  canDisappear = true
 }) => {
-  const { activeIndex, pointCount } = useContext(AppContext)
+  const initialRender = useRef<boolean>(true)
+  const buttonRef = useRef<HTMLButtonElement | null>(null)
+  const { activeIndex, pointCount, animDuration, activePoint } = useContext(AppContext)
 
-  const isFirst = activeIndex === 0
-  const isLast = activeIndex === pointCount - 1
+  const isFirst: boolean = activeIndex === 0
+  const isLast: boolean = activeIndex === pointCount - 1
 
   const styleObj = {
     width: diameter,
@@ -29,8 +33,32 @@ export const ButtonArrow: FC<IButtonArrow> = ({
       ? "component-buttonArrow--left"
       : "component-buttonArrow--right"
 
+  useEffect(() => {
+    if (!canDisappear) return
+
+    if (initialRender.current) {
+      if (buttonRef.current) {
+        gsap.set(buttonRef.current, { opacity: 1 })
+      }
+
+      initialRender.current = false
+
+      return
+    }
+
+    if (buttonRef.current) {
+      gsap.killTweensOf(buttonRef.current)
+      gsap.fromTo(
+        buttonRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 1, delay: animDuration }
+      )
+    }
+  }, [activePoint, animDuration])
+
   return (
     <button
+    ref={buttonRef}
       className={`component-buttonArrow ${dirClassName}`}
       onClick={onClick}
       style={styleObj}

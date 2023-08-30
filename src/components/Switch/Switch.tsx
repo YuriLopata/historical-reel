@@ -22,6 +22,7 @@ export const Switch: FC<ISwitch> = ({ elCount }) => {
           direction="left"
           bgColor="#f4f3f9"
           canDisable
+          canDisappear={false}
         />
 
         <ButtonArrow
@@ -31,6 +32,7 @@ export const Switch: FC<ISwitch> = ({ elCount }) => {
           arrowHeight={isMobile ? 10 : 14}
           bgColor="#f4f3f9"
           canDisable
+          canDisappear={false}
         />
       </div>
     </div>

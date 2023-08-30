@@ -7,4 +7,5 @@ export interface IButtonArrow {
   canDisable?: boolean
   arrowColor?: string
   direction?: "right" | "left"
+  canDisappear: boolean
 }

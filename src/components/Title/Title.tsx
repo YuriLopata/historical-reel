@@ -21,6 +21,7 @@ export const Title: FC<ITitle> = ({ title }) => {
     }
 
     if (titleRef.current) {
+      gsap.killTweensOf(titleRef.current)
       gsap.fromTo(
         titleRef.current,
         { opacity: 0 },

@@ -74,6 +74,7 @@ export const CardSlider: FC<ICardSlider> = () => {
           direction="left"
           bgColor="#fff"
           arrowColor="#554aef"
+          canDisappear
         />
       )}
 
@@ -105,6 +106,7 @@ export const CardSlider: FC<ICardSlider> = () => {
           arrowHeight={12}
           bgColor="#fff"
           arrowColor="#554aef"
+          canDisappear
         />
       )}
     </div>
