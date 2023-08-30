@@ -7,6 +7,7 @@ import { Switch } from "../../components/Switch/Switch"
 import { Year } from "../../components/Year/Year"
 import { FullReelContext } from "../../context/FullReelContext"
 import "./fullReel.scss"
+import "./media.scss"
 import { IFullReel } from "./interface"
 
 export const FullReel: FC<IFullReel> = ({
