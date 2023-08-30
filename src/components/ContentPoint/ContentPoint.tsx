@@ -13,7 +13,7 @@ export const ContentPoint: FC<IContentPoint> = ({
 }) => {
   const pointRef = useRef<HTMLButtonElement | null>(null)
   const titleRef = useRef<HTMLParagraphElement | null>(null)
-  const isMounted = useRef<boolean>(false)
+  const initialRender = useRef<boolean>(true)
 
   const {
     animDuration,
@@ -26,8 +26,8 @@ export const ContentPoint: FC<IContentPoint> = ({
   } = useContext(AppContext)
 
   useEffect(() => {
-    if (!isMounted.current) {
-      isMounted.current = true
+    if (initialRender.current) {
+      initialRender.current = false
 
       if (titleRef.current) {
         gsap.set(titleRef.current, { opacity: 1 })
@@ -43,7 +43,7 @@ export const ContentPoint: FC<IContentPoint> = ({
         { opacity: 1, duration: 1, delay: animDuration }
       )
     }
-  }, [activePoint, animDuration, isMounted, titleRef])
+  }, [activePoint, animDuration, initialRender, titleRef])
 
   const getActiveClassname = (el: IContentElement): string => {
     if (el.id === activePoint.id) return "component-point-wrapper--active"

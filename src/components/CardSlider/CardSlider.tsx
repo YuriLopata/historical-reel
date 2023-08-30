@@ -14,7 +14,7 @@ import { Switch } from "../Switch/Switch"
 
 export const CardSlider: FC<ICardSlider> = () => {
   const [activeSlide, setActiveSlide] = useState<number>(0)
-  const cardSliderRef = useRef<HTMLDivElement | null>(null)
+  const cardRef = useRef<HTMLDivElement | null>(null)
   const swiperRef = useRef<SwiperClass | null>(null)
   const isMounted = useRef<boolean>(false)
   const { activePoint, animDuration, slideGap, isMobile, pointCount } =
@@ -26,14 +26,14 @@ export const CardSlider: FC<ICardSlider> = () => {
       return
     }
 
-    if (cardSliderRef.current) {
+    if (cardRef.current) {
       gsap.fromTo(
-        cardSliderRef.current,
+        cardRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 1, delay: animDuration }
       )
     }
-  }, [activePoint, animDuration, cardSliderRef, isMounted])
+  }, [activePoint, animDuration, cardRef, isMounted])
 
   const getCardsCount = (): number => {
     const cardCount = activePoint.cards.length
@@ -53,7 +53,7 @@ export const CardSlider: FC<ICardSlider> = () => {
   }
 
   return (
-    <div ref={cardSliderRef} className="component-cardSlider">
+    <div className="component-cardSlider">
       {isMobile && (
         <>
           <h3 className="component-cardSlider__title">{activePoint.title}</h3>
@@ -85,7 +85,9 @@ export const CardSlider: FC<ICardSlider> = () => {
       >
         {activePoint.cards.map((card: ICard) => (
           <SwiperSlide key={card.cardId}>
-            <Card title={card.title} desc={card.description} />
+            <div ref={cardRef}>
+              <Card title={card.title} desc={card.description} />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
