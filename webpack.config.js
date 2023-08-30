@@ -7,7 +7,7 @@ module.exports = {
   entry: ["@babel/polyfill", "./src/index.tsx"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[hash].js",
+    filename: "[name].[fullhash].js",
   },
   devServer: {
     port: 3000,
