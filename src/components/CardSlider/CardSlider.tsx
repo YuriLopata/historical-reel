@@ -1,7 +1,9 @@
 import { ICard } from "models"
 import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react"
+import { Pagination } from "swiper/modules"
 import "swiper/scss"
+import 'swiper/scss/pagination';
 import { ButtonArrow } from "../ButtonArrow/ButtonArrow"
 import { Card } from "../Card/Card"
 import { ICardSlider } from "./interface"
@@ -73,8 +75,10 @@ export const CardSlider: FC<ICardSlider> = () => {
       )}
 
       <Swiper
+        modules={[Pagination]}
         spaceBetween={slideGap}
         slidesPerView={visibleSlidesCount}
+        pagination={{ clickable: true }}
         onSlideChange={handleSlideChange}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
       >

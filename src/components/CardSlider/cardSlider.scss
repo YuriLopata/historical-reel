@@ -11,11 +11,15 @@
 
     .swiper {
         max-width: 100%;
-        margin: auto;
+        margin: 0 auto;
 
         .swiper-slide {
             cursor: pointer;
         }
+    }
+
+    .swiper-pagination {
+        display: none;
     }
 
     .component-buttonArrow {
