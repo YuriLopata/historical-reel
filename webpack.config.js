@@ -14,10 +14,7 @@ module.exports = {
     filename: "[name].[fullhash].js",
   },
   optimization: {
-    minimizer: [
-      new OptimizeCssAssetsWebpackPlugin(),
-      new TerserPlugin(),
-    ],
+    minimizer: [new OptimizeCssAssetsWebpackPlugin(), new TerserPlugin()],
   },
   devServer: {
     port: 3000,
