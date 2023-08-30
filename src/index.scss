@@ -199,6 +199,12 @@ body {
       margin: 0;
       padding: 0 0 0 20px;
 
+      .component-title {
+          font-size: 16px;
+          margin-bottom: 20px;
+          font-weight: 700;
+      }
+
       .line-hor {
         width: calc(100vw - 40px) !important;
         background: #c7cdd9;

@@ -49,10 +49,6 @@
         .component-point__number {
             opacity: 0;
         }
-
-        .component-point__title {
-            opacity: 0;
-        }
     }
 }
 
@@ -73,11 +69,10 @@
             opacity: 1;
         }
 
-        .component-point__title {
+        .component-title {
             position: absolute;
             top: calc(50% - 13px);
             left: 76px;
-            font-weight: 700;
             cursor: default;
         }
     }

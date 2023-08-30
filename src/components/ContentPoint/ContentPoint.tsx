@@ -1,9 +1,9 @@
-import React, { FC, useContext, useEffect, useRef } from "react"
+import React, { FC, useContext, useRef } from "react"
 import { IContentPoint } from "./interface"
 import { IContentElement } from "models"
-import { gsap } from "gsap"
 import "./contentPoint.scss"
 import { AppContext } from "../../context/AppContext"
+import { Title } from "../Title/Title"
 
 export const ContentPoint: FC<IContentPoint> = ({
   contentEl,
@@ -12,8 +12,6 @@ export const ContentPoint: FC<IContentPoint> = ({
   defaultAngle,
 }) => {
   const pointRef = useRef<HTMLButtonElement | null>(null)
-  const titleRef = useRef<HTMLParagraphElement | null>(null)
-  const initialRender = useRef<boolean>(true)
 
   const {
     animDuration,
@@ -24,26 +22,6 @@ export const ContentPoint: FC<IContentPoint> = ({
     reelDiameter,
     pointDiameter,
   } = useContext(AppContext)
-
-  useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false
-
-      if (titleRef.current) {
-        gsap.set(titleRef.current, { opacity: 1 })
-      }
-
-      return
-    }
-
-    if (titleRef.current) {
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1, delay: animDuration }
-      )
-    }
-  }, [activePoint, animDuration, initialRender, titleRef])
 
   const getActiveClassname = (el: IContentElement): string => {
     if (el.id === activePoint.id) return "component-point-wrapper--active"
@@ -73,16 +51,14 @@ export const ContentPoint: FC<IContentPoint> = ({
           className="component-point__number"
           style={{
             transform: `rotate(${defineReelRotate(contentEl)}deg)`,
-            transition: `transform ${animDuration}s ease`,
+            transition: `all ${animDuration}s ease`,
           }}
         >
           {index + 1}
         </p>
 
         {contentEl.id === activePoint.id && (
-          <p ref={titleRef} className="component-point__title">
-            {activePoint.title}
-          </p>
+          <Title title={activePoint.title} />
         )}
       </div>
     </button>

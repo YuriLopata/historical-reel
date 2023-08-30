@@ -1,5 +1,5 @@
 import { IContentElement } from "models"
-import React, { FC, useEffect, useState } from "react"
+import React, { FC, useEffect, useRef, useState } from "react"
 import { contentElements } from "./assets/db"
 import { CardSlider } from "./components/CardSlider/CardSlider"
 import { Header } from "./components/Header/Header"
@@ -17,6 +17,8 @@ export const App: FC = () => {
   const [isTablet, setIsTablet] = useState<boolean>(false)
   const [isLandscape, setIsLandscape] = useState<boolean>(false)
   const [isMobile, setIsMobile] = useState<boolean>(false)
+  
+  const initialRender = useRef<boolean>(true)
 
   let reelDiameter = 530 // px
   let pointDiameter = 56 // px
@@ -31,22 +33,22 @@ export const App: FC = () => {
     (el: IContentElement) => el.id === activePoint.id
   )
 
+  // desktop width
   if (window.innerWidth < 1121) {
-    // desktop width
     reelDiameter = 436
     reelTopIndent = 400
     slideGap = 40
   }
 
+  // tablet width
   if (window.innerWidth < 993) {
-    // tablet width
     reelDiameter = 362
     reelTopIndent = 358
     slideGap = 25
   }
 
+  // mobile width
   if (window.innerWidth < 576) {
-    // mobile width
     reelTopIndent = 330
   }
 
@@ -159,6 +161,7 @@ export const App: FC = () => {
         reelTopIndent,
         isMobile,
         slideGap,
+        initialRender
       }}
     >
       <div className="wrapper">

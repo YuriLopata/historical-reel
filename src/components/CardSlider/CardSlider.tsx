@@ -11,10 +11,12 @@ import "./cardSlider.scss"
 import { gsap } from "gsap"
 import { AppContext } from "../../context/AppContext"
 import { Switch } from "../Switch/Switch"
+import { Title } from "../Title/Title"
 
 export const CardSlider: FC<ICardSlider> = () => {
   const [activeSlide, setActiveSlide] = useState<number>(0)
   const cardRef = useRef<HTMLDivElement | null>(null)
+  const lineRef = useRef<HTMLDivElement | null>(null)
   const swiperRef = useRef<SwiperClass | null>(null)
   const isMounted = useRef<boolean>(false)
   const { activePoint, animDuration, slideGap, isMobile, pointCount } =
@@ -26,14 +28,14 @@ export const CardSlider: FC<ICardSlider> = () => {
       return
     }
 
-    if (cardRef.current) {
+    if (cardRef.current && lineRef.current) {
       gsap.fromTo(
-        cardRef.current,
+        [cardRef.current, lineRef.current],
         { opacity: 0 },
         { opacity: 1, duration: 1, delay: animDuration }
       )
     }
-  }, [activePoint, animDuration, cardRef, isMounted])
+  }, [activePoint, animDuration])
 
   const getCardsCount = (): number => {
     const cardCount = activePoint.cards.length
@@ -56,9 +58,9 @@ export const CardSlider: FC<ICardSlider> = () => {
     <div className="component-cardSlider">
       {isMobile && (
         <>
-          <h3 className="component-cardSlider__title">{activePoint.title}</h3>
+          <Title title={activePoint.title} />
 
-          <div className="line-hor"></div>
+          <div ref={lineRef} className="line-hor"></div>
         </>
       )}
 
