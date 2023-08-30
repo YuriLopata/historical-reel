@@ -1,13 +1,12 @@
-import { FullReelContext } from "../../context/FullReelContext"
-import React, { FC, useContext, useEffect, useRef } from "react"
 import { gsap } from "gsap"
-import "./title.scss"
+import React, { FC, useContext, useEffect, useRef } from "react"
+import { FullReelContext } from "../../context/FullReelContext"
 import { ITitle } from "./interface"
+import "./title.scss"
 
 export const Title: FC<ITitle> = ({ title }) => {
   const titleRef = useRef<HTMLParagraphElement | null>(null)
-  const { activePoint, animDuration, initialRender } =
-    useContext(FullReelContext)
+  const { activePoint, animDuration, initialRender } = useContext(FullReelContext)
 
   useEffect(() => {
     if (initialRender.current) {

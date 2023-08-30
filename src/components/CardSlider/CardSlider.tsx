@@ -1,19 +1,18 @@
+import { gsap } from "gsap"
 import { ICard } from "models"
 import React, { FC, useContext, useEffect, useRef, useState } from "react"
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react"
 import { Pagination } from "swiper/modules"
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react"
 import "swiper/scss"
 import "swiper/scss/pagination"
+import { FullReelContext } from "../../context/FullReelContext"
 import { ButtonArrow } from "../ButtonArrow/ButtonArrow"
 import { Card } from "../Card/Card"
-import { ICardSlider } from "./interface"
-import "./cardSlider.scss"
-import { gsap } from "gsap"
-import { FullReelContext } from "../../context/FullReelContext"
 import { Switch } from "../Switch/Switch"
 import { Title } from "../Title/Title"
+import "./cardSlider.scss"
 
-export const CardSlider: FC<ICardSlider> = () => {
+export const CardSlider: FC = () => {
   const [activeSlide, setActiveSlide] = useState<number>(0)
   const cardRef = useRef<HTMLDivElement | null>(null)
   const lineRef = useRef<HTMLDivElement | null>(null)
@@ -47,15 +46,13 @@ export const CardSlider: FC<ICardSlider> = () => {
     }
   }, [activePoint, animDuration])
 
-  const getCardsCount = (): number => {
-    const cardCount = activePoint.cards.length
-
-    if (cardCount === 1) return 1
-    if (cardCount === 2) return 2
+  const getCardsCount = (elCount: number): number => {
+    if (elCount === 1) return 1
+    if (elCount === 2) return 2
     if (isMobile) return 1.6
     return 3
   }
-  const visibleSlidesCount = getCardsCount()
+  const visibleSlidesCount: number = getCardsCount(activePoint.cards.length)
 
   const isSlideLast: boolean =
     activeSlide !== (swiperRef.current?.slides.length || 0) - visibleSlidesCount

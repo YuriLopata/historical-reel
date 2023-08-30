@@ -1,5 +1,5 @@
 export interface IButtonArrow {
-  onClick: any
+  onClick: () => void
   diameter?: number
   arrowWidth?: number
   arrowHeight?: number

@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { contentElements } from "./assets/db"
-import "./index.scss"
 import { FullReel } from "./components/FullReel/FullReel"
+import "./index.scss"
 
 export const App: FC = () => {
   return (

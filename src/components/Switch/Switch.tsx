@@ -1,8 +1,8 @@
-import React, { FC, useContext, useRef } from "react"
+import React, { FC, useContext } from "react"
+import { FullReelContext } from "../../context/FullReelContext"
 import { ButtonArrow } from "../ButtonArrow/ButtonArrow"
 import { ISwitch } from "./interface"
 import "./switch.scss"
-import { FullReelContext } from "../../context/FullReelContext"
 
 export const Switch: FC<ISwitch> = ({ elCount }) => {
   const { activeIndex, handleClickSwitch, isMobile } =

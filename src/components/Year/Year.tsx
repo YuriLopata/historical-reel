@@ -1,12 +1,12 @@
+import { gsap } from "gsap"
 import React, { FC, useContext, useEffect, useRef, useState } from "react"
+import { FullReelContext } from "../../context/FullReelContext"
 import { IYear } from "./interface"
 import "./year.scss"
-import { gsap } from "gsap"
-import { FullReelContext } from "../../context/FullReelContext"
 
 export const Year: FC<IYear> = ({ year, color = "#000" }) => {
   const [currentYear, setCurrentYear] = useState<number>(year)
-  const yearRef = useRef<any>(null)
+  const yearRef = useRef<HTMLDivElement | null>(null)
   const { animDuration } = useContext(FullReelContext)
 
   useEffect(() => {

@@ -203,8 +203,7 @@ export const contentElements: IContentElement[] = [
       {
         cardId: 106,
         title: "2007",
-        description:
-          "Россия провела чемпионат мира по футболу FIFA",
+        description: "Россия провела чемпионат мира по футболу FIFA",
       },
     ],
   },

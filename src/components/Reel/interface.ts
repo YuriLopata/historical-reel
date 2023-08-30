@@ -1,4 +1,4 @@
 export interface IReel {
-    timePeriodsCount: number
-    diameter: number
+  timePeriodsCount: number
+  diameter: number
 }

@@ -23,13 +23,13 @@ export const FullReel: FC<IFullReel> = ({
 
   const initialRender = useRef<boolean>(true)
 
-  const pointCount = items.length
+  const pointCount: number = items.length
   const angleIncrement: number = 360 / pointCount // град. между точками
   const animDuration: number = 1 // секунд
 
-  let slideGap = 80 // px
+  let slideGap: number = 80 // px
 
-  const activeIndex = items.findIndex(
+  const activeIndex: number = items.findIndex(
     (el: IContentElement) => el.id === activePoint.id
   )
 
@@ -65,7 +65,7 @@ export const FullReel: FC<IFullReel> = ({
     }
   }, [])
 
-  const definePointRotate = (): number => {
+  const definePointRotate = (pointCount: number): number => {
     if (pointCount === 5 || pointCount === 4) return angleIncrement / 2
     if (pointCount === 3) return angleIncrement / 4
     if (pointCount === 2) return angleIncrement / 3

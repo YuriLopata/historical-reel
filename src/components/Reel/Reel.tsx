@@ -1,10 +1,10 @@
+import { IContentElement } from "models"
 import React, { FC, useContext, useRef } from "react"
 import { contentElements } from "../../assets/db"
+import { FullReelContext } from "../../context/FullReelContext"
+import { ContentPoint } from "../ContentPoint/ContentPoint"
 import { IReel } from "./interface"
 import "./reel.scss"
-import { IContentElement } from "models"
-import { ContentPoint } from "../ContentPoint/ContentPoint"
-import { FullReelContext } from "../../context/FullReelContext"
 
 export const Reel: FC<IReel> = ({ timePeriodsCount, diameter }) => {
   const reelRef = useRef<HTMLDivElement | null>(null)
@@ -12,13 +12,13 @@ export const Reel: FC<IReel> = ({ timePeriodsCount, diameter }) => {
   const { rotation, angleIncrement, reelTopIndent } =
     useContext(FullReelContext)
 
-  const defineDefaultAngle = (): number => {
-    if (timePeriodsCount === 5) return -36
-    if (timePeriodsCount === 4) return -45
-    if (timePeriodsCount === 3) return -30
+  const defineDefaultAngle = (number: number): number => {
+    if (number === 5) return -36
+    if (number === 4) return -45
+    if (number === 3) return -30
     return -60
   }
-  const defaultAngle = defineDefaultAngle() // градусов против часовой стрелки
+  const defaultAngle: number = defineDefaultAngle(timePeriodsCount) // градусов против часовой стрелки
 
   return (
     <div

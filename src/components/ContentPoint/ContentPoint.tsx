@@ -1,9 +1,9 @@
-import React, { FC, useContext, useRef } from "react"
-import { IContentPoint } from "./interface"
 import { IContentElement } from "models"
-import "./contentPoint.scss"
+import React, { FC, useContext, useRef } from "react"
 import { FullReelContext } from "../../context/FullReelContext"
 import { Title } from "../Title/Title"
+import "./contentPoint.scss"
+import { IContentPoint } from "./interface"
 
 export const ContentPoint: FC<IContentPoint> = ({
   contentEl,
@@ -21,6 +21,7 @@ export const ContentPoint: FC<IContentPoint> = ({
     definePointRotate,
     reelDiameter,
     pointDiameter,
+    pointCount,
   } = useContext(FullReelContext)
 
   const getActiveClassname = (el: IContentElement): string => {
@@ -44,7 +45,7 @@ export const ContentPoint: FC<IContentPoint> = ({
       <div
         className="component-point"
         style={{
-          transform: `rotate(${definePointRotate()}deg)`,
+          transform: `rotate(${definePointRotate(pointCount)}deg)`,
         }}
       >
         <p
@@ -57,9 +58,7 @@ export const ContentPoint: FC<IContentPoint> = ({
           {index + 1}
         </p>
 
-        {contentEl.id === activePoint.id && (
-          <Title title={activePoint.title} />
-        )}
+        {contentEl.id === activePoint.id && <Title title={activePoint.title} />}
       </div>
     </button>
   )

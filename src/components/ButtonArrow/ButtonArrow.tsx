@@ -1,8 +1,8 @@
+import { gsap } from "gsap"
 import React, { FC, useContext, useEffect, useRef } from "react"
+import { FullReelContext } from "../../context/FullReelContext"
 import "./buttonArrow.scss"
 import { IButtonArrow } from "./interface"
-import { FullReelContext } from "../../context/FullReelContext"
-import { gsap } from "gsap"
 
 export const ButtonArrow: FC<IButtonArrow> = ({
   onClick = () => {},
@@ -23,13 +23,7 @@ export const ButtonArrow: FC<IButtonArrow> = ({
   const isFirst: boolean = activeIndex === 0
   const isLast: boolean = activeIndex === pointCount - 1
 
-  const styleObj = {
-    width: diameter,
-    height: diameter,
-    backgroundColor: bgColor,
-  }
-
-  const dirClassName =
+  const dirClassName: string =
     direction === "left"
       ? "component-buttonArrow--left"
       : "component-buttonArrow--right"
@@ -62,7 +56,11 @@ export const ButtonArrow: FC<IButtonArrow> = ({
       ref={buttonRef}
       className={`component-buttonArrow ${dirClassName}`}
       onClick={onClick}
-      style={styleObj}
+      style={{
+        width: diameter,
+        height: diameter,
+        backgroundColor: bgColor,
+      }}
       disabled={
         canDisable &&
         ((isFirst && direction === "left") || (isLast && direction !== "left"))
