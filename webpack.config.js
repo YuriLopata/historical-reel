@@ -1,8 +1,10 @@
 const path = require("path")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const TerserPlugin = require("terser-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const Autoprefixer = require("autoprefixer")
+const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin")
 
 module.exports = {
   mode: "development",
@@ -12,7 +14,10 @@ module.exports = {
     filename: "[name].[fullhash].js",
   },
   optimization: {
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    minimizer: [
+      new OptimizeCssAssetsWebpackPlugin(),
+      new TerserPlugin(),
+    ],
   },
   devServer: {
     port: 3000,
@@ -33,6 +38,11 @@ module.exports = {
       },
     }),
     new CleanWebpackPlugin(),
+    Autoprefixer,
+    new OptimizeCssAssetsWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].[fullhash].css",
+    }),
   ],
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -41,7 +51,12 @@ module.exports = {
     rules: [
       {
         test: /\.(css|sass|scss)$/,
-        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.(jpg|jpeg|png|svg)$/,
