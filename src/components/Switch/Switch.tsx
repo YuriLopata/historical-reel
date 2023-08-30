@@ -5,7 +5,7 @@ import "./switch.scss"
 import { AppContext } from "../../context/AppContext"
 
 export const Switch: FC<ISwitch> = ({ elCount }) => {
-  const { activeIndex, handleClickSwitch } = useContext(AppContext)
+  const { activeIndex, handleClickSwitch, isMobile } = useContext(AppContext)
 
   return (
     <div className="component-switch">
@@ -16,7 +16,9 @@ export const Switch: FC<ISwitch> = ({ elCount }) => {
       <div className="component-switch__buttons">
         <ButtonArrow
           onClick={() => handleClickSwitch("prev")}
-          diameter={50}
+          diameter={isMobile ? 25 : 50}
+          arrowWidth={isMobile ? 5 : 10}
+          arrowHeight={isMobile ? 10 : 14}
           direction="left"
           bgColor="#f4f3f9"
           canDisable
@@ -24,7 +26,9 @@ export const Switch: FC<ISwitch> = ({ elCount }) => {
 
         <ButtonArrow
           onClick={() => handleClickSwitch("next")}
-          diameter={50}
+          diameter={isMobile ? 25 : 50}
+          arrowWidth={isMobile ? 5 : 10}
+          arrowHeight={isMobile ? 10 : 14}
           bgColor="#f4f3f9"
           canDisable
         />

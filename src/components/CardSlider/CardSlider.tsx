@@ -14,7 +14,8 @@ export const CardSlider: FC<ICardSlider> = () => {
   const cardSliderRef = useRef<HTMLDivElement | null>(null)
   const swiperRef = useRef<SwiperClass | null>(null)
   const isMounted = useRef<boolean>(false)
-  const { activePoint, animDuration, slideGap, isMobile } = useContext(AppContext)
+  const { activePoint, animDuration, slideGap, isMobile } =
+    useContext(AppContext)
 
   useEffect(() => {
     if (!isMounted.current) {
@@ -50,7 +51,7 @@ export const CardSlider: FC<ICardSlider> = () => {
 
   return (
     <div ref={cardSliderRef} className="component-cardSlider">
-      {activeSlide !== 0 && activePoint.cards.length > 3 && (
+      {activeSlide !== 0 && activePoint.cards.length > 3 && !isMobile && (
         <ButtonArrow
           onClick={() => {
             swiperRef?.current?.slidePrev()
@@ -76,7 +77,7 @@ export const CardSlider: FC<ICardSlider> = () => {
         ))}
       </Swiper>
 
-      {isSlideLast && activePoint.cards.length > 3 && (
+      {isSlideLast && activePoint.cards.length > 3 && !isMobile && (
         <ButtonArrow
           onClick={() => {
             swiperRef?.current?.slideNext()

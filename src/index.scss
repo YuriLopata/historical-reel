@@ -166,10 +166,11 @@ body {
     }
 
     .years {
-      width: 100%;
+      width: 100% !important;
       justify-content: space-between;
       transform: translateX(0);
       margin-top: 56px;
+      margin-bottom: 77px;
 
       .component-year {
         font-size: 56px;
@@ -182,11 +183,8 @@ body {
       }
     }
 
-    .component-switch {
-      margin: 0;
-    }
-
     .component-cardSlider {
+      max-width: fit-content;
       margin: 0;
 
       .component-card {
@@ -199,5 +197,24 @@ body {
         }
       }
     }
+  }
+
+  .component-switch {
+    margin: 46px 0 0 0 !important;
+    // margin-top: auto !important;
+
+    &__series-segment {
+      margin-bottom: 10px;
+    }
+
+    .component-switch__buttons {
+      .component-buttonArrow:first-child {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .line-hor {
+    background: #C7CDD9;
   }
 }

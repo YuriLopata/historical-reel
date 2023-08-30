@@ -44,7 +44,7 @@ export const App: FC = () => {
     slideGap = 25
   }
 
-  if (window.innerWidth < 576) { // tablet width
+  if (window.innerWidth < 576) { // mobile width
     reelTopIndent = 293
   }
 
@@ -179,9 +179,11 @@ export const App: FC = () => {
         ></div>
         {!isMobile && <div className="line line-ver"></div>}
 
-        <Switch elCount={pointCount} />
+        {!isMobile && <Switch elCount={pointCount} />}
 
         <CardSlider />
+
+        {isMobile && <Switch elCount={pointCount} />}
       </div>
     </AppContext.Provider>
   )
