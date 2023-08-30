@@ -188,7 +188,6 @@ export const App: FC = () => {
 
         {isMobile && (
           <>
-            <div className="line-hor"></div>
             <CardSlider />
             <Switch elCount={pointCount} />
           </>

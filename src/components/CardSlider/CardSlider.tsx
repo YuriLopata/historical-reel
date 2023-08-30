@@ -51,6 +51,14 @@ export const CardSlider: FC<ICardSlider> = () => {
 
   return (
     <div ref={cardSliderRef} className="component-cardSlider">
+      {isMobile && (
+        <>
+          <h3 className="component-cardSlider__title">{activePoint.title}</h3>
+
+          <div className="line-hor"></div>
+        </>
+      )}
+
       {activeSlide !== 0 && activePoint.cards.length > 3 && !isMobile && (
         <ButtonArrow
           onClick={() => {

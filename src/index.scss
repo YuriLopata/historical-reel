@@ -180,7 +180,7 @@ body {
       justify-content: space-between;
       transform: translateX(0);
       margin-top: 56px;
-      margin-bottom: 80px;
+      margin-bottom: 56px;
 
       .component-year {
         font-size: 56px;
@@ -194,9 +194,17 @@ body {
     }
 
     .component-cardSlider {
+      flex-direction: column;
       max-width: fit-content;
       margin: 0;
       padding: 0 0 0 20px;
+
+      .line-hor {
+        width: calc(100vw - 40px) !important;
+        background: #c7cdd9;
+        margin-bottom: 20px !important;
+        padding: 0;
+      }
 
       .swiper-slide-next {
         opacity: 0.5 !important;
@@ -227,13 +235,5 @@ body {
         margin-right: 8px;
       }
     }
-  }
-
-  .line-hor {
-    width: calc(100vw - 40px) !important;
-    background: #c7cdd9;
-    margin-bottom: 20px !important;
-    margin: 0 auto;
-    padding: 0;
   }
 }
