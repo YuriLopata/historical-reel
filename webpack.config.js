@@ -2,6 +2,7 @@ const path = require("path")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin")
 
 module.exports = {
   mode: "development",
@@ -11,7 +12,7 @@ module.exports = {
     filename: "[name].[fullhash].js",
   },
   optimization: {
-    minimizer: [new CssMinimizerPlugin()],
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
   devServer: {
     port: 3000,
@@ -20,7 +21,17 @@ module.exports = {
     },
   },
   plugins: [
-    new HTMLWebpackPlugin({ template: "./public/index.html" }),
+    new HTMLWebpackPlugin({
+      template: "./public/index.html",
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+      },
+    }),
     new CleanWebpackPlugin(),
   ],
   resolve: {
